@@ -11,18 +11,24 @@
 
     <context:component-scan base-package="com.gourderwa"/>
 
-    <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+    <!-- use this code if your are using version 3 . based on the version your are using should configure the tiles. -->
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.UrlBasedViewResolver">
         <property name="viewClass">
-            <value>org.springframework.web.servlet.view.tiles2.TilesView</value>
+            <value>
+                org.springframework.web.servlet.view.tiles3.TilesView
+            </value>
         </property>
     </bean>
-    <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+    <bean id="tilesConfigurer"
+          class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
         <property name="definitions">
             <list>
                 <value>/WEB-INF/config/tiles-definitions.xml</value>
             </list>
         </property>
     </bean>
+
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/"/>
