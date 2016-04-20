@@ -12,7 +12,8 @@
 %>
 <html>
 <head>
-    <title>用户管理-<%=application.getAttribute("proName")%></title>
+    <title>用户管理-<%=application.getAttribute("proName")%>
+    </title>
     <jsp:include page="./../public/public.jsp"/>
 </head>
 <body>

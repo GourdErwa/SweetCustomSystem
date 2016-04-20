@@ -5,7 +5,7 @@
   Time: 1:57
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <%

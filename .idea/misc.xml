@@ -5,7 +5,7 @@
     <option name="formatter" value="ECLIPSE" />
     <option name="id" value="1454481859372" />
     <option name="name" value="Eclipse" />
-    <option name="pathToConfigFileJava" value="$PROJECT_DIR$/../../../kaifa/plugs/Intellij-EclipseFormatSetting/eclipse-java-eclipse-style-EZSonar.xml" />
+    <option name="pathToConfigFileJava" value="F:/kaifa/plugs/Intellij-EclipseFormatSetting/eclipse-java-eclipse-style-EZSonar.xml" />
     <option name="selectedJavaProfile" value="EclipseStyle-EZSonar" />
     <option name="useOldEclipseJavaFormatter" value="true" />
   </component>
@@ -34,8 +34,5 @@
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
-  </component>
-  <component name="SvnConfiguration">
-    <configuration>$USER_HOME$/.subversion</configuration>
   </component>
 </project>

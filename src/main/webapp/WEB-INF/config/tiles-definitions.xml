@@ -18,9 +18,9 @@
     </definition>-->
 
     <!--登录页-->
-    <definition name="layouts.application_layout.login" extends="layouts.public_layout">
+    <!--<definition name="layouts.application_layout.login" extends="layouts.public_layout">
         <put-attribute name="main-container" value="/WEB-INF/pages/login/login.jsp"/>
-    </definition>
+    </definition>-->
 
 
 </tiles-definitions>
