@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="SweetCustomSystem:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="SweetCustomSystem##1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="SweetCustomSystem:war exploded" />
+    </root>
+  </artifact>
+</component>
