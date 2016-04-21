@@ -5,7 +5,7 @@
     <option name="formatter" value="ECLIPSE" />
     <option name="id" value="1454481859372" />
     <option name="name" value="Eclipse" />
-    <option name="pathToConfigFileJava" value="$PROJECT_DIR$/../../../kaifa/plugs/Intellij-EclipseFormatSetting/eclipse-java-eclipse-style-EZSonar.xml" />
+    <option name="pathToConfigFileJava" value="F:/kaifa/plugs/Intellij-EclipseFormatSetting/eclipse-java-eclipse-style-EZSonar.xml" />
     <option name="selectedJavaProfile" value="EclipseStyle-EZSonar" />
     <option name="useOldEclipseJavaFormatter" value="true" />
   </component>

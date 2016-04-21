@@ -11,10 +11,11 @@
         <Console name="STDOUT" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
-        <RollingFile name="exportMessage" fileName="${filename}exportMessage.log" filePattern="${filename}exportMessage.%d{yyyy-MM-dd}.log" append="true">
+        <RollingFile name="exportMessage" fileName="${filename}exportMessage.log"
+                     filePattern="${filename}exportMessage.%d{yyyy-MM-dd}.log" append="true">
             <PatternLayout pattern="%d{MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
             <Policies>
-                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
             </Policies>
         </RollingFile>
     </appenders>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
@@ -14,11 +14,7 @@
     <!-- use this code if your are using version 3 . based on the version your are using should configure the tiles. -->
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-        <property name="viewClass">
-            <value>
-                org.springframework.web.servlet.view.tiles3.TilesView
-            </value>
-        </property>
+        <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
     </bean>
     <bean id="tilesConfigurer"
           class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
@@ -34,7 +30,6 @@
         <property name="prefix" value="/WEB-INF/pages/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
-
 
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="false">
@@ -61,21 +56,15 @@
 
     <!-- upload file -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <property name="maxUploadSize">
-            <value>2048000</value>
-        </property>
-        <property name="maxInMemorySize">
-            <value>2048</value>
-        </property>
-        <property name="defaultEncoding">
-            <value>UTF-8</value>
-        </property>
+        <property name="maxUploadSize" value="2048000"/>
+        <property name="maxInMemorySize" value="2048"/>
+        <property name="defaultEncoding" value="UTF-8"/>
     </bean>
 
     <context:property-placeholder
-            location="classpath:project.properties"
+            location="classpath:*-gourderwa.properties"
             file-encoding="UTF-8" ignore-resource-not-found="true" ignore-unresolvable="true"/>
 
-    <!--<import resource="mvc-dao.xml"/>-->
+    <import resource="spring-hibernate.xml"/>
 
 </beans>

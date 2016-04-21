@@ -12,7 +12,8 @@
 %>
 <html>
 <head>
-    <title>用户管理-新建用户-<%=application.getAttribute("proName")%></title>
+    <title>用户管理-新建用户-<%=application.getAttribute("proName")%>
+    </title>
     <jsp:include page="./../public/public.jsp"/>
 </head>
 <body>
@@ -23,24 +24,28 @@
         <form class="form-horizontal">
             <div class="form-group">
                 <label for="userName" class="col-sm-2 control-label">用户名</label>
+
                 <div class="col-sm-10">
                     <input type="email" class="form-control" id="userName" placeholder="用户名">
                 </div>
             </div>
             <div class="form-group">
                 <label for="passWd" class="col-sm-2 control-label">密码</label>
+
                 <div class="col-sm-10">
                     <input type="password" class="form-control" id="passWd" placeholder="密码">
                 </div>
             </div>
             <div class="form-group">
                 <label for="phone" class="col-sm-2 control-label">电话</label>
+
                 <div class="col-sm-10">
                     <input type="password" class="form-control" id="phone" placeholder="电话">
                 </div>
             </div>
             <div class="form-group">
                 <label for="email" class="col-sm-2 control-label">邮箱</label>
+
                 <div class="col-sm-10">
                     <input type="password" class="form-control" id="email" placeholder="邮箱">
                 </div>

@@ -5,7 +5,7 @@
   Time: 23:14
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -24,7 +24,7 @@
 </head>
 
 <body>
-<%response.sendRedirect(basePath + "home");%>
+<%response.sendRedirect(basePath + "login");%>
 </body>
 </html>
 

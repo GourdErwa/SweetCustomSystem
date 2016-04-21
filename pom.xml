@@ -1,4 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.gourderwa</groupId>
@@ -10,6 +10,7 @@
     <properties>
         <java-version>1.7</java-version>
         <org.springframework-version>4.2.5.RELEASE</org.springframework-version>
+        <hibernate.version>5.1.0.Final</hibernate.version>
         <tiles-version>3.0.5</tiles-version>
         <org.slf4j-version>2.4.1</org.slf4j-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -35,21 +36,59 @@
             <version>${org.springframework-version}</version>
         </dependency>
         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
+        <!--<dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
             <version>1.8.9</version>
-        </dependency>
-        <!--<dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>2.7.3</version>
         </dependency>-->
+
+        <!-- 关系型数据库整合时需配置 如hibernate jpa等 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
+
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.7.3</version>
         </dependency>
 
+        <!-- hibernate -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-ehcache</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>2.10.1</version>
+        </dependency>
+
+        <!-- mysql连接 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.38</version>
+        </dependency>
+
+        <!-- c3p0数据源 -->
+        <dependency>
+            <groupId>c3p0</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.1.2</version>
+        </dependency>
 
         <!-- servlet -->
         <dependency>
@@ -102,6 +141,7 @@
             <artifactId>tiles-template</artifactId>
             <version>${tiles-version}</version>
         </dependency>
+
         <!-- log4j2 slf4j 实现-->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -170,6 +210,21 @@
                     <outputDirectory>target/deploy/</outputDirectory>
                 </configuration>
             </plugin>-->
+            <!-- generate java doc -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <configuration>
+                    <javadocDirectory>target/javadoc</javadocDirectory>
+                    <reportOutputDirectory>target/javadoc</reportOutputDirectory>
+                    <charset>UTF-8</charset>
+                    <encoding>UTF-8</encoding>
+                    <docencoding>UTF-8</docencoding>
+                    <show>private</show>
+                </configuration>
+            </plugin>
+
         </plugins>
         <!-- Resource Filters for build.properties -->
         <resources>
@@ -182,9 +237,9 @@
 
     <profiles>
         <profile>
-            <id>liw</id>
+            <id>test</id>
             <properties>
-                <package.environment>liw</package.environment>
+                <package.environment>test</package.environment>
             </properties>
         </profile>
     </profiles>
