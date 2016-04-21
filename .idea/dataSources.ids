@@ -1,29 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
   <data-source name="SweetCustomSystem" uuid="0579f001-63cf-43bb-a652-a07054a6ff82">
-    <database-info product="MySQL" version="5.6.24" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+    <database-info product="MySQL" version="5.6.17" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.34 ( Revision: jess.balint@oracle.com-20141014163213-wqbwpf1ok2kvo1om )">
       <extra-name-characters>#@</extra-name-characters>
       <identifier-quote-string>`</identifier-quote-string>
     </database-info>
-    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
-    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.2">
-      <schema id="1" name="sweetcustomsystem"/>
-      <table id="2" parent="1" name="users"/>
-      <table id="3" parent="1" name="users_sequence"/>
-      <column id="4" parent="2" name="id">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="5" parent="2" name="userName">
-        <data-type>varchar(32)</data-type>
-      </column>
-      <key id="6" parent="2" name="PRIMARY">
-        <columns>id</columns>
-        <primary>1</primary>
-      </key>
-      <column id="7" parent="3" name="next_val">
-        <data-type>bigint(20)</data-type>
-      </column>
+    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.5">
+      <schema id="1" name="SweetCustomSystem"/>
     </database-model>
   </data-source>
 </component>
