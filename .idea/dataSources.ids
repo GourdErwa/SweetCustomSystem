@@ -1,13 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
   <data-source name="SweetCustomSystem" uuid="0579f001-63cf-43bb-a652-a07054a6ff82">
-    <database-info product="MySQL" version="5.6.17" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.34 ( Revision: jess.balint@oracle.com-20141014163213-wqbwpf1ok2kvo1om )">
+    <database-info product="MySQL" version="5.6.24" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
       <extra-name-characters>#@</extra-name-characters>
       <identifier-quote-string>`</identifier-quote-string>
     </database-info>
-    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
     <database-model serializer="dbm" rdbms="MYSQL" format-version="2.5">
-      <schema id="1" name="SweetCustomSystem"/>
+      <schema id="1" name="sweetcustomsystem"/>
+      <table id="2" parent="1" name="candy"/>
+      <table id="3" parent="1" name="candycategory"/>
+      <table id="4" parent="1" name="hibernate_sequence"/>
+      <table id="5" parent="1" name="users"/>
+      <column id="6" parent="2" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="7" parent="2" name="available">
+        <data-type>bit(1)</data-type>
+      </column>
+      <column id="8" parent="2" name="images">
+        <data-type>blob</data-type>
+      </column>
+      <column id="9" parent="2" name="postage">
+        <data-type>double</data-type>
+      </column>
+      <column id="10" parent="2" name="salesVolume">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="11" parent="2" name="stock">
+        <data-type>int(11)</data-type>
+      </column>
+      <key id="12" parent="2" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="13" parent="2" name="FKaqtduy623twssr22qaxu9e3jr">
+        <columns>id</columns>
+        <ref-key>~.candycategory.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="14" parent="3" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="15" parent="3" name="candyCategoryName">
+        <data-type>int(11)</data-type>
+      </column>
+      <key id="16" parent="3" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="17" parent="4" name="next_val">
+        <data-type>bigint(20)</data-type>
+      </column>
+      <column id="18" parent="5" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="19" parent="5" name="address">
+        <data-type>varchar(32)</data-type>
+      </column>
+      <column id="20" parent="5" name="email">
+        <data-type>varchar(32)</data-type>
+      </column>
+      <column id="21" parent="5" name="passWd">
+        <data-type>varchar(32)</data-type>
+      </column>
+      <column id="22" parent="5" name="phone">
+        <data-type>varchar(32)</data-type>
+      </column>
+      <column id="23" parent="5" name="type">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="24" parent="5" name="userName">
+        <data-type>varchar(32)</data-type>
+      </column>
+      <key id="25" parent="5" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
     </database-model>
   </data-source>
 </component>

@@ -1,25 +1,25 @@
 package com.gourderwa.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.gourderwa.service.UsersService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
+
 /**
- * @author wei.Li
+ * @author HuKaiMo on 2016/4/21.
  */
 @Controller
-@RequestMapping("login")
-public class LoginController {
+@RequestMapping("users")
+public class UsersController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
-
+    @Resource
+    private UsersService usersService;
 
     @RequestMapping(value = "")
-    public ModelAndView goIndexPage() {
+    public ModelAndView goIndexPage(String topoId) {
 
         return null;
     }
-
 }
