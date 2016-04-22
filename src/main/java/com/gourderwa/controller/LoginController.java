@@ -13,13 +13,12 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("login")
 public class LoginController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 
+	@RequestMapping(value = "")
+	public ModelAndView goIndexPage() {
 
-    @RequestMapping(value = "")
-    public ModelAndView goIndexPage() {
-
-        return null;
-    }
+		return null;
+	}
 
 }

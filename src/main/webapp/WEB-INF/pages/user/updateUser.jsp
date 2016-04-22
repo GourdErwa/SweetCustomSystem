@@ -115,7 +115,7 @@
             var email = $email.val();
 
             if (userName == "" || passWd == "") {
-                $("#model").modal("toggle");
+                $("#entity").modal("toggle");
                 MSG.showMsg("用户名密码必填");
                 return;
             }

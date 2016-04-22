@@ -9,46 +9,46 @@
 
 /* Loader */
 
-	body.landing {
-		&:before, &:after {
-			display: none !important;
-		}
-	}
+body.landing {
+  &:before, &:after {
+    display: none !important;
+  }
+}
 
 /* Icon */
 
-	.icon {
-		&.alt {
-			color: inherit !important;
-		}
+.icon {
+  &.alt {
+    color: inherit !important;
+  }
 
-		&.major {
-			&.alt {
-				&:before {
-					color: $color-fg-bold !important;
-				}
-			}
-		}
-	}
+  &.major {
+    &.alt {
+      &:before {
+        color: $color-fg-bold !important;
+      }
+    }
+  }
+}
 
 /* Banner */
 
-	#banner {
-		&:after {
-			background-color: $color-bg-transparent;
-		}
-	}
+#banner {
+  &:after {
+    background-color: $color-bg-transparent;
+  }
+}
 
 /* Footer */
 
-	#footer {
-		.icons {
-			.icon {
-				&.alt {
-					&:before {
-						color: $color-fg-bold !important;
-					}
-				}
-			}
-		}
-	}
+#footer {
+  .icons {
+    .icon {
+      &.alt {
+        &:before {
+          color: $color-fg-bold !important;
+        }
+      }
+    }
+  }
+}

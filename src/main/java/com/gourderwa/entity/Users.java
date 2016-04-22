@@ -1,4 +1,4 @@
-package com.gourderwa.model;
+package com.gourderwa.entity;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -6,6 +6,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 
 /**
+ * 用户
+ *
  * @author Wei.Li on 2016/3/9.
  */
 @Entity
@@ -16,31 +18,47 @@ public class Users {
     @Id
     @GeneratedValue
     @Column
-    private int id;
+    private int usersId;
 
-    @Column(length = 32)
+    @Column(length = 20, unique = true, nullable = false)
     private String userName;
-    @Column(length = 32)
+
+    @Column(length = 20, nullable = false)
     private String passWd;
-    @Column(length = 32)
+
+    @Column(length = 20)
     private String phone;
-    @Column(length = 32)
+
+    @Column(length = 100)
     private String email;
-    @Column(length = 32)
+
+    @Column(length = 200)
     private String address;
 
     /**
      * 普通用户1、管理员2、超级用户3
      */
-    @Column(length = 1)
+    @Column(length = 1, nullable = false)
     private int type;
 
-    public int getId() {
-        return id;
+    public Users() {
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Users(String userName, String passWd, String phone, String email, String address, int type) {
+        this.userName = userName;
+        this.passWd = passWd;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.type = type;
+    }
+
+    public int getUsersId() {
+        return usersId;
+    }
+
+    public void setUsersId(int usersId) {
+        this.usersId = usersId;
     }
 
     public String getUserName() {

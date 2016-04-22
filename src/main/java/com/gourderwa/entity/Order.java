@@ -1,11 +1,13 @@
-package com.gourderwa.model;
+package com.gourderwa.entity;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
 /**
- * @author HuKaiMo on 2016/4/21.
+ * 订单
+ *
+ * @author Wei.Li on 2016/4/21.
  */
 @Entity
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -21,25 +23,24 @@ public class Order {
      * 用户 id
      */
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "usersId", insertable = false, updatable = false, nullable = false)
     private Users users;
 
     /**
      * 糖果 id
      */
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "candyId", insertable = false, updatable = false, nullable = false)
     private Candy candy;
     /**
-     * 订单类型
-     * 糖果定制1 or 正常购买2
+     * 订单类型 糖果定制1 or 正常购买2
      */
-    @Column(length = 1)
+    @Column(length = 1, nullable = false)
     private int type;
     /**
      * 用户价格
      */
-    @Column(length = 8, scale = 2)
+    @Column(length = 8, scale = 2, nullable = false)
     private double userPrice;
 
     /**
@@ -51,13 +52,13 @@ public class Order {
     /**
      * 订单状态
      */
-    @Column(length = 32)
+    @Column(length = 20)
     private State state;
 
     /**
      * 驳回理由
      */
-    @Column
+    @Column(length = 1000)
     private String reasonRejection;
 
     /**
@@ -69,8 +70,24 @@ public class Order {
     /**
      * 用户留言
      */
-    @Column
+    @Column(length = 1000)
     private String guestBook;
+
+    public Order() {
+    }
+
+    public Order(Users users, Candy candy, int type, double userPrice, double postage,
+                 State state, String reasonRejection, String orderTime, String guestBook) {
+        this.users = users;
+        this.candy = candy;
+        this.type = type;
+        this.userPrice = userPrice;
+        this.postage = postage;
+        this.state = state;
+        this.reasonRejection = reasonRejection;
+        this.orderTime = orderTime;
+        this.guestBook = guestBook;
+    }
 
     public int getId() {
         return id;
@@ -174,7 +191,6 @@ public class Order {
          * 已签收
          */
         AlreadySign
-
 
     }
 

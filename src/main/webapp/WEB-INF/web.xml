@@ -17,7 +17,9 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-
+    <listener>
+        <listener-class>com.gourderwa.util.StartupListener</listener-class>
+    </listener>
     <!--编码过滤-->
     <filter>
         <filter-name>encodingFilter</filter-name>

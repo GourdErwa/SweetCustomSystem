@@ -1,11 +1,13 @@
-package com.gourderwa.model;
+package com.gourderwa.entity;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
 /**
- * @author HuKaiMo on 2016/4/21.
+ * 糖果
+ *
+ * @author Wei.Li on 2016/4/21.
  */
 @Entity
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -15,17 +17,17 @@ public class Candy {
     @Id
     @GeneratedValue
     @Column
-    private int id;
+    private int candyId;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "id", updatable = false, nullable = false)
     private CandyCategory candyCategory;
 
     /**
      * 糖果状态
      */
     @Column
-    private boolean available;
+    private State state;
 
     /**
      * 糖果图片
@@ -36,13 +38,13 @@ public class Candy {
     /**
      * 库存
      */
-    @Column(length = 8)
+    @Column(length = 8, columnDefinition = "0")
     private int stock;
 
     /**
      * 销量
      */
-    @Column(length = 8)
+    @Column(length = 8, columnDefinition = "0")
     private int salesVolume;
 
     /**
@@ -51,12 +53,26 @@ public class Candy {
     @Column(length = 8, scale = 2)
     private double postage;
 
-    public int getId() {
-        return id;
+    public Candy() {
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Candy(CandyCategory candyCategory, State state, String[] images,
+                 int stock, int salesVolume, double postage) {
+        this.candyCategory = candyCategory;
+        this.state = state;
+        this.images = images;
+        this.stock = stock;
+        this.salesVolume = salesVolume;
+        this.postage = postage;
+    }
+
+
+    public int getCandyId() {
+        return candyId;
+    }
+
+    public void setCandyId(int candyId) {
+        this.candyId = candyId;
     }
 
     public CandyCategory getCandyCategory() {
@@ -67,12 +83,12 @@ public class Candy {
         this.candyCategory = candyCategory;
     }
 
-    public boolean isAvailable() {
-        return available;
+    public State getState() {
+        return state;
     }
 
-    public void setAvailable(boolean available) {
-        this.available = available;
+    public void setState(State state) {
+        this.state = state;
     }
 
     public String[] getImages() {
@@ -110,6 +126,10 @@ public class Candy {
     enum State {
 
         /**
+         * 审核中
+         */
+        Audit,
+        /**
          * 售货中
          */
         SaleIn,
@@ -120,11 +140,7 @@ public class Candy {
         /**
          * 下架
          */
-        OffSshelf,
-        /**
-         * 审核中
-         */
-        Audit
+        OffSshelf
 
     }
 }

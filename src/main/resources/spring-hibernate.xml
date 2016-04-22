@@ -25,8 +25,8 @@
         <!-- 连接数据库连接池最大空闲时间 -->
         <property name="maxIdleTime" value="30"/>
         <!-- 连接池初始化连接数 -->
-        <property name="initialPoolSize" value="5"/>
-        <property name="minPoolSize" value="5"/>
+        <property name="initialPoolSize" value="2"/>
+        <property name="minPoolSize" value="2"/>
         <property name="maxPoolSize" value="20"/>
         <!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。默认值: 3 -->
         <property name="acquireIncrement" value="5"/>
@@ -55,12 +55,13 @@
             </props>
         </property>
         <!-- 扫描hibernate注解配置的entity -->
-        <property name="packagesToScan" value="com.gourderwa.model"/>
+        <property name="packagesToScan" value="com.gourderwa.entity"/>
     </bean>
 
+    <!-- hibernateTemplate -->
     <bean id="hibernateTemplate"
           class="org.springframework.orm.hibernate5.HibernateTemplate">
-        <property name="sessionFactory" ref="sessionFactory" />
+        <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
     <!-- 配置事务管理器 -->
@@ -81,6 +82,7 @@
             <tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
             <tx:method name="select*" propagation="SUPPORTS" read-only="true"/>
             <tx:method name="load*" propagation="SUPPORTS" read-only="true"/>
+            <tx:method name="search*" propagation="SUPPORTS" read-only="true"/>
 
             <!-- 其他采用默认事务方式 -->
             <tx:method name="*"/>
@@ -92,10 +94,9 @@
     <aop:config>
         <!-- 配置切入点 -->
         <aop:pointcut id="transactionPointcut"
-                      expression="execution(* com.gourderwa.controller..*.*(..))"/>
+                      expression="execution(* com.gourderwa.service..*.*(..))"/>
         <!-- 指定在txAdvice切入点应用txAdvice事务增强处理 -->
-        <aop:advisor pointcut-ref="transactionPointcut"
-                     advice-ref="transactionAdvice"/>
+        <aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice"/>
     </aop:config>
 
 </beans>
