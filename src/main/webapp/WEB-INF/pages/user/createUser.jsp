@@ -12,9 +12,8 @@
 %>
 <html>
 <head>
-    <title>用户管理-新建用户-<%=application.getAttribute("proName")%>
+    <title>用户管理-新建用户-<%=application.getAttribute("projectName")%>
     </title>
-    <jsp:include page="./../public/public.jsp"/>
 </head>
 <body>
 <div class="container">
@@ -81,7 +80,7 @@
 
             if (userName == "" || passWd == "") {
                 $("#entity").modal("toggle");
-                MSG.showMsg("用户名密码必填");
+                MSG.showErrorMsg("用户名密码必填");
                 return;
             }
 
@@ -97,8 +96,8 @@
                 },
                 dataType: "json",
                 success: function (data) {
-                    MSG.showMsg(data.data);
-                    if (data.succeed) {
+                    MSG.showErrorMsg(data.data);
+                    if (data.success) {
                         setTimeout(reload, 3000);
                     }
                 }

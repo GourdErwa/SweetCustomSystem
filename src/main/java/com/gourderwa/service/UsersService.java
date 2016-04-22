@@ -17,6 +17,10 @@ public class UsersService {
     private UsersDao usersDao;
 
 
+    public Result verifyLogin(boolean isAdmin, String userName, String passWd) {
+        return usersDao.verifyLogin(isAdmin, userName, passWd);
+    }
+
     public Result searchUsers(String userName) {
 
         final List<?> searchUsers = usersDao.searchUsers(userName);

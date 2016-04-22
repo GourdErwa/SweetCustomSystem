@@ -21,7 +21,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>登录-<%=application.getAttribute("proName")%>
+    <title>登录-<%=application.getAttribute("projectName")%>
     </title>
 
     <link href="./../../resource/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -112,7 +112,7 @@
                 dataType: "json",
                 success: function (data) {
                     console.log(data);
-                    if (data.succeed) {
+                    if (data.success) {
                         window.location.href = "<%=basePath%>" + "pages/home/home.jsp";
                     } else {
                         if (data.data) {

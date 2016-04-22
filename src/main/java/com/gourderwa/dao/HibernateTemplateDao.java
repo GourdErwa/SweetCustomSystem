@@ -9,7 +9,7 @@ import javax.annotation.Resource;
  */
 public class HibernateTemplateDao {
 
-	@Resource
-	HibernateTemplate hibernateTemplate;
+    @Resource
+    HibernateTemplate hibernateTemplate;
 
 }

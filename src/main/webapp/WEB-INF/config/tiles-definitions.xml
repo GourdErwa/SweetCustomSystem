@@ -13,14 +13,14 @@
     </definition>
 
     <!--系统首页-->
-    <!--<definition name="layouts.application_layout.index" extends="layouts.public_layout">
-        <put-attribute name="main-container" value="/WEB-INF/pages/index/home.jsp"/>
-    </definition>-->
+    <definition name="layouts.application_layout.home" extends="layouts.public_layout">
+        <put-attribute name="main-container" value="/WEB-INF/pages/home/home.jsp"/>
+    </definition>
 
     <!--登录页-->
-    <!--<definition name="layouts.application_layout.login" extends="layouts.public_layout">
+    <definition name="layouts.application_layout.login" extends="layouts.public_layout">
         <put-attribute name="main-container" value="/WEB-INF/pages/login/login.jsp"/>
-    </definition>-->
+    </definition>
 
 
 </tiles-definitions>

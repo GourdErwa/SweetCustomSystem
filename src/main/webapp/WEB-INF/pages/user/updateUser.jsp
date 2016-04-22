@@ -12,7 +12,7 @@
 %>
 <html>
 <head>
-    <title>用户管理-修改用户-<%=application.getAttribute("proName")%>
+    <title>用户管理-修改用户-<%=application.getAttribute("projectName")%>
     </title>
     <jsp:include page="./../public/public.jsp"/>
 </head>
@@ -106,7 +106,7 @@
             var userName = $userName.val();
 
             if (userName !== "<%=userName%>") {
-                MSG.showMsg("待修改用户名失效");
+                MSG.showErrorMsg("待修改用户名失效");
                 return;
             }
 
@@ -116,7 +116,7 @@
 
             if (userName == "" || passWd == "") {
                 $("#entity").modal("toggle");
-                MSG.showMsg("用户名密码必填");
+                MSG.showErrorMsg("用户名密码必填");
                 return;
             }
 
@@ -132,7 +132,7 @@
                 },
                 dataType: "json",
                 success: function (data) {
-                    MSG.showMsg(data.data);
+                    MSG.showErrorMsg(data.data);
                 }
             });
         });

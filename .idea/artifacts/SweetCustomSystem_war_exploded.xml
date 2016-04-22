@@ -41,6 +41,7 @@
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.38" />
           <element id="library" level="project" name="Maven: c3p0:c3p0:0.9.1.2" />
           <element id="library" level="project" name="Maven: javax.servlet.jsp.jstl:jstl-api:1.2" />
+          <element id="library" level="project" name="Maven: taglibs:standard:1.1.2" />
           <element id="library" level="project" name="Maven: org.apache.tiles:tiles-jsp:3.0.5" />
           <element id="library" level="project" name="Maven: org.apache.tiles:tiles-request-jsp:1.0.6" />
           <element id="library" level="project" name="Maven: org.apache.tiles:tiles-core:3.0.5" />

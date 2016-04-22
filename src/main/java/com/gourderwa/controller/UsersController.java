@@ -15,18 +15,18 @@ import javax.annotation.Resource;
 @RequestMapping("users")
 public class UsersController {
 
-	@Resource
-	private UsersService usersService;
+    @Resource
+    private UsersService usersService;
 
-	@RequestMapping(value = "")
-	public ModelAndView goIndexPage(String topoId) {
+    @RequestMapping(value = "")
+    public ModelAndView goIndexPage(String topoId) {
 
-		return null;
-	}
+        return null;
+    }
 
-	@RequestMapping(value = "searchUsers")
-	public Result searchUsers(String userName) {
+    @RequestMapping(value = "searchUsers")
+    public Result searchUsers(String userName) {
 
-		return usersService.searchUsers(userName);
-	}
+        return usersService.searchUsers(userName);
+    }
 }

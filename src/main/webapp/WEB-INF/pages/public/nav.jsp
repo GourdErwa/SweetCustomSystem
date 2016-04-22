@@ -1,3 +1,5 @@
+<%@ page import="com.gourderwa.entity.Users" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: wei.Li
@@ -10,86 +12,39 @@
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
+<nav>
+    <ul class="nav nav-pills pull-right" id="menu">
+        <li id="homeMenu" role="presentation" class="active"><a>首页 </a></li>
+        <li id="usersMenu" role="presentation"><a href="http://v3.bootcss.com/examples/jumbotron-narrow/#">用户管理</a>
+        </li>
+        <li id="candyMenu" role="presentation"><a href="http://v3.bootcss.com/examples/jumbotron-narrow/#">糖果定制</a>
+        </li>
+        <li id="orderMenu" role="presentation"><a href="http://v3.bootcss.com/examples/jumbotron-narrow/#">我的订单</a>
+        </li>
+        <c:if test="${sessionScope.get('users') == null}">
+            <li id="loginMenu" role="presentation"><a href="http://v3.bootcss.com/examples/jumbotron-narrow/#">登录</a>
+            </li>
+            <li id="regiMenu" role="presentation"><a href="http://v3.bootcss.com/examples/jumbotron-narrow/#">注册</a>
+            </li>
+        </c:if>
+        <c:if test="${sessionScope.get('users') != null}">
+            <li id="currUserMenu" role="presentation"><a
+                    href="http://v3.bootcss.com/examples/jumbotron-narrow/#"><%=((Users) session.getAttribute("users")).getUserName()%>
+            </a>
+            </li>
+        </c:if>
 
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-<meta name="description" content="">
-<meta name="author" content="">
-<link rel="icon" href="<%=basePath%>favicon.ico">
-
-
-<script src="<%=basePath%>resource/js/jquery.min.js"></script>
-<script src="<%=basePath%>resource/bootstrap/js/bootstrap.min.js"></script>
-
-<link href="<%=basePath%>resource/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="<%=basePath%>resource/css/jumbotron-narrow.css" rel="stylesheet">
-<link href="<%=basePath%>resource/dataTables/jquery.dataTables.min.css" rel="stylesheet">
-<script src="<%=basePath%>resource/dataTables/jquery.dataTables.min.js"></script>
-
-<div id="msgModel" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close"
-                        data-dismiss="modal" aria-hidden="true">
-                    &times;
-                </button>
-                <h5 class="modal-title">
-                    提示
-                </h5>
-            </div>
-            <div id="msgModelBody" class="modal-body" style="text-align: center">
-            </div>
-        </div>
-    </div>
-</div>
+    </ul>
+</nav>
+<h3 class="text-muted">${applicationScope.projectName}</h3>
 
 <script>
 
-    /**
-     * 模态框展示提示信息
-     * @type {{showMsg: MSG."showMsg"}} {{showMsg: MSG."showMsg"}}
-     */
-    var MSG = {
-        "showMsg": function (msg) {
-            $("#msgModelBody").empty().append(msg);
-            $("#msgModel").modal("toggle");
-        }
-    };
+    //菜单激活控制
+    var activeMenu = '${sessionScope.activeMenu}';
+    if (activeMenu) {
+        $("#menu").find("li .active").removeClass("active");
+        $("#" + activeMenu).addClass("active");
+    }
 
-
-    var reload = function () {
-        window.location.reload()
-    };
-
-    (function ($) {
-        var _ajax = $.ajax;
-        $.ajax = function (opt) {
-            var fn = {
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                },
-                success: function (data, textStatus) {
-                }
-            };
-            if (opt.error) {
-                fn.error = opt.error;
-            }
-            if (opt.success) {
-                fn.success = opt.success;
-            }
-            //扩展增强处理
-            var _opt = $.extend(opt, {
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    fn.error(XMLHttpRequest, textStatus, errorThrown);
-                    MSG.showMsg(textStatus);
-                },
-                success: function (data, textStatus) {
-                    fn.success(data, textStatus);
-                }
-            });
-            _ajax(_opt);
-        };
-    })(jQuery);
 </script>

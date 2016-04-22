@@ -36,7 +36,7 @@ public class Users {
     private String address;
 
     /**
-     * 普通用户1、管理员2、超级用户3
+     * 普通用户1、管理员2
      */
     @Column(length = 1, nullable = false)
     private int type;

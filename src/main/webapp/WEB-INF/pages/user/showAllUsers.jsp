@@ -12,7 +12,7 @@
 %>
 <html>
 <head>
-    <title>用户管理-<%=application.getAttribute("proName")%>
+    <title>用户管理-<%=application.getAttribute("projectName")%>
     </title>
     <jsp:include page="./../public/public.jsp"/>
 </head>
@@ -118,8 +118,8 @@
                     },
                     dataType: "json",
                     success: function (data) {
-                        MSG.showMsg(data.data);
-                        if (data.succeed) {
+                        MSG.showErrorMsg(data.data);
+                        if (data.success) {
                             table.row(".js-del-tr").remove().draw(false);
                         }
                     }

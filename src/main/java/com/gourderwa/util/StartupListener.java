@@ -7,6 +7,7 @@ import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
@@ -31,10 +32,21 @@ public class StartupListener implements ServletContextListener {
         try {
             this.hibernateTemplate = (HibernateTemplate) applicationContext.getBean("hibernateTemplate");
             this.projectPropertiesService = (ProjectPropertiesService) applicationContext.getBean("projectPropertiesService");
-
+            setApplicationValue();
+            this.projectPropertiesService.insertDemoData(this.hibernateTemplate);
 
         } catch (Exception ignored) {
         }
+    }
+
+
+    /**
+     * 设置全局变量
+     */
+    private void setApplicationValue() {
+        final ServletContext servletContext = this.applicationContext.getServletContext();
+        servletContext.setAttribute("projectName", this.projectPropertiesService.getProjectName());
+        servletContext.setAttribute("projectVersion", this.projectPropertiesService.getProjectVersion());
     }
 
 }
