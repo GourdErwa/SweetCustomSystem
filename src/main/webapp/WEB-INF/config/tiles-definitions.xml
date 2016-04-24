@@ -12,15 +12,49 @@
         <put-attribute name="dialog" value=""/>
     </definition>
 
-    <!--系统首页-->
-    <definition name="layouts.application_layout.home" extends="layouts.public_layout">
-        <put-attribute name="main-container" value="/WEB-INF/pages/home/home.jsp"/>
-    </definition>
-
     <!--登录页-->
     <definition name="layouts.application_layout.login" extends="layouts.public_layout">
         <put-attribute name="main-container" value="/WEB-INF/pages/login/login.jsp"/>
     </definition>
 
+    <!--系统首页-->
+    <definition name="layouts.application_layout.home" extends="layouts.public_layout">
+        <put-attribute name="main-container" value="/WEB-INF/pages/home/home.jsp"/>
+    </definition>
+
+    <!--用户管理页-->
+    <definition name="layouts.application_layout.showAllUsers" extends="layouts.public_layout">
+        <put-attribute name="main-container" value="/WEB-INF/pages/users/showAllUsers.jsp"/>
+    </definition>
+    <!--用户管理-新建页-->
+    <definition name="layouts.application_layout.createUsers" extends="layouts.public_layout">
+        <put-attribute name="main-container" value="/WEB-INF/pages/users/createUsers.jsp"/>
+    </definition>
+    <!--用户管理-修改页-->
+    <definition name="layouts.application_layout.updateUsers" extends="layouts.public_layout">
+        <put-attribute name="main-container" value="/WEB-INF/pages/users/updateUsers.jsp"/>
+    </definition>
+
+    <!--糖果定制页-->
+    <definition name="layouts.application_layout.candy" extends="layouts.public_layout">
+        <put-attribute name="main-container" value="/WEB-INF/pages/candy/showAllCandy.jsp"/>
+    </definition>
+    <definition name="layouts.application_layout.candy.customization" extends="layouts.public_layout">
+        <put-attribute name="main-container" value="/WEB-INF/pages/candy/customization.jsp"/>
+    </definition>
+    <definition name="layouts.application_layout.candy.showOne" extends="layouts.public_layout">
+        <put-attribute name="main-container" value="/WEB-INF/pages/candy/showOne.jsp"/>
+    </definition>
+
+    <!-- 订单管理 -->
+    <definition name="layouts.application_layout.orderForm.insert" extends="layouts.public_layout">
+        <put-attribute name="main-container" value="/WEB-INF/pages/orderForm/insert.jsp"/>
+    </definition>
+    <definition name="layouts.application_layout.orderForm.showOne" extends="layouts.public_layout">
+        <put-attribute name="main-container" value="/WEB-INF/pages/orderForm/showOne.jsp"/>
+    </definition>
+    <definition name="layouts.application_layout.orderForm.showAll" extends="layouts.public_layout">
+        <put-attribute name="main-container" value="/WEB-INF/pages/orderForm/showAll.jsp"/>
+    </definition>
 
 </tiles-definitions>

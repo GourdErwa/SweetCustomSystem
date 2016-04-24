@@ -11,43 +11,39 @@ import javax.persistence.*;
  */
 @Entity
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Table(name = "order")
-public class Order {
+@Table(name = "orderForm")
+public class OrderForm {
 
     @Id
-    @GeneratedValue
-    @Column(insertable = false, updatable = false)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column
+    private int orderFormId;
 
     /**
      * 用户 id
      */
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "usersId", insertable = false, updatable = false, nullable = false)
+    @JoinColumn(name = "userId")
     private Users users;
 
     /**
      * 糖果 id
      */
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "candyId", insertable = false, updatable = false, nullable = false)
+    @JoinColumn(name = "candyId")
     private Candy candy;
-    /**
-     * 订单类型 糖果定制1 or 正常购买2
-     */
-    @Column(length = 1, nullable = false)
-    private int type;
-    /**
-     * 用户价格
-     */
-    @Column(length = 8, scale = 2, nullable = false)
-    private double userPrice;
 
     /**
-     * 邮费
+     * 订单数量
      */
-    @Column(length = 8, scale = 2)
-    private double postage;
+    @Column(length = 8)
+    private double num;
+
+    /**
+     * 订单地址
+     */
+    @Column(length = 1000)
+    private String address;
 
     /**
      * 订单状态
@@ -56,7 +52,7 @@ public class Order {
     private State state;
 
     /**
-     * 驳回理由
+     * 卖家反馈信息
      */
     @Column(length = 1000)
     private String reasonRejection;
@@ -73,28 +69,28 @@ public class Order {
     @Column(length = 1000)
     private String guestBook;
 
-    public Order() {
+    public OrderForm() {
     }
 
-    public Order(Users users, Candy candy, int type, double userPrice, double postage,
-                 State state, String reasonRejection, String orderTime, String guestBook) {
+    public OrderForm(Users users, Candy candy, double num,
+                     String address,
+                     State state, String reasonRejection, String orderTime, String guestBook) {
         this.users = users;
         this.candy = candy;
-        this.type = type;
-        this.userPrice = userPrice;
-        this.postage = postage;
+        this.num = num;
+        this.address = address;
         this.state = state;
         this.reasonRejection = reasonRejection;
         this.orderTime = orderTime;
         this.guestBook = guestBook;
     }
 
-    public int getId() {
-        return id;
+    public int getOrderFormId() {
+        return orderFormId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setOrderFormId(int orderFormId) {
+        this.orderFormId = orderFormId;
     }
 
     public Users getUsers() {
@@ -113,28 +109,20 @@ public class Order {
         this.candy = candy;
     }
 
-    public int getType() {
-        return type;
+    public double getNum() {
+        return num;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setNum(double num) {
+        this.num = num;
     }
 
-    public double getUserPrice() {
-        return userPrice;
+    public String getAddress() {
+        return address;
     }
 
-    public void setUserPrice(double userPrice) {
-        this.userPrice = userPrice;
-    }
-
-    public double getPostage() {
-        return postage;
-    }
-
-    public void setPostage(double postage) {
-        this.postage = postage;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public State getState() {
@@ -169,29 +157,38 @@ public class Order {
         this.guestBook = guestBook;
     }
 
-    enum State {
+    public enum State {
 
-        /**
-         * 用户下单
-         */
-        UserOrder,
         /**
          * 卖家驳回
          */
-        SellerRejected,
+        SellerRejected("卖家驳回"),
         /**
          * 等待发货
          */
-        WaitingForDelivery,
+        WaitingForDelivery("等待发货"),
         /**
          * 已发货
          */
-        AlreadyShipped,
+        AlreadyShipped("已发货"),
         /**
          * 已签收
          */
-        AlreadySign
+        AlreadySign("已签收");
 
+        private String describe;
+
+        State(String describe) {
+            this.describe = describe;
+        }
+
+        public String getDescribe() {
+            return describe;
+        }
+
+        public void setDescribe(String describe) {
+            this.describe = describe;
+        }
     }
 
 }

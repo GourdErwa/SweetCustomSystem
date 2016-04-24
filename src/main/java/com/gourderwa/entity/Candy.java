@@ -15,12 +15,21 @@ import javax.persistence.*;
 public class Candy {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column
     private int candyId;
 
+    @Column(length = 30)
+    private String candyName;
+    /**
+     * 用户 id
+     */
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", updatable = false, nullable = false)
+    @JoinColumn(name = "userId", insertable = false, updatable = false)
+    private Users users;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "candyCategoryId", updatable = false, nullable = false)
     private CandyCategory candyCategory;
 
     /**
@@ -33,18 +42,18 @@ public class Candy {
      * 糖果图片
      */
     @Column(length = 1000)
-    private String[] images;
+    private String image;
 
     /**
      * 库存
      */
-    @Column(length = 8, columnDefinition = "0")
+    @Column(length = 8)
     private int stock;
 
     /**
      * 销量
      */
-    @Column(length = 8, columnDefinition = "0")
+    @Column(length = 8)
     private int salesVolume;
 
     /**
@@ -56,11 +65,21 @@ public class Candy {
     public Candy() {
     }
 
-    public Candy(CandyCategory candyCategory, State state, String[] images,
-                 int stock, int salesVolume, double postage) {
+    public Candy(String candyName, Users users, CandyCategory candyCategory, State state, String image) {
+        this.candyName = candyName;
+        this.users = users;
         this.candyCategory = candyCategory;
         this.state = state;
-        this.images = images;
+        this.image = image;
+    }
+
+    public Candy(String candyName, Users users, CandyCategory candyCategory, State state, String image,
+                 int stock, int salesVolume, double postage) {
+        this.candyName = candyName;
+        this.users = users;
+        this.candyCategory = candyCategory;
+        this.state = state;
+        this.image = image;
         this.stock = stock;
         this.salesVolume = salesVolume;
         this.postage = postage;
@@ -73,6 +92,22 @@ public class Candy {
 
     public void setCandyId(int candyId) {
         this.candyId = candyId;
+    }
+
+    public String getCandyName() {
+        return candyName;
+    }
+
+    public void setCandyName(String candyName) {
+        this.candyName = candyName;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
     }
 
     public CandyCategory getCandyCategory() {
@@ -91,12 +126,12 @@ public class Candy {
         this.state = state;
     }
 
-    public String[] getImages() {
-        return images;
+    public String getImage() {
+        return image;
     }
 
-    public void setImages(String[] images) {
-        this.images = images;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public int getStock() {
@@ -123,24 +158,30 @@ public class Candy {
         this.postage = postage;
     }
 
-    enum State {
+    public enum State {
 
         /**
          * 审核中
          */
-        Audit,
+        Audi("审核中"),
         /**
          * 售货中
          */
-        SaleIn,
-        /**
-         * 卖家生产
-         */
-        SellerProduction,
+        SaleIn("售货中"),
         /**
          * 下架
          */
-        OffSshelf
+        OffSshelf("下架");
 
+
+        private String describe;
+
+        State(String describe) {
+            this.describe = describe;
+        }
+
+        public String getDescribe() {
+            return describe;
+        }
     }
 }

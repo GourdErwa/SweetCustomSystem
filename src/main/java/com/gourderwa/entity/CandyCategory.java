@@ -2,10 +2,7 @@ package com.gourderwa.entity;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * 糖果分类
@@ -18,8 +15,9 @@ import javax.persistence.Table;
 public class CandyCategory {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column
-    private int id;
+    private int candyCategoryId;
 
     @Column(length = 32, unique = true, nullable = false)
     private String candyCategoryName;
@@ -31,12 +29,12 @@ public class CandyCategory {
         this.candyCategoryName = candyCategoryName;
     }
 
-    public int getId() {
-        return id;
+    public int getCandyCategoryId() {
+        return candyCategoryId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCandyCategoryId(int candyCategoryId) {
+        this.candyCategoryId = candyCategoryId;
     }
 
     public String getCandyCategoryName() {

@@ -4,6 +4,7 @@ import com.gourderwa.model.Result;
 import com.gourderwa.service.UsersService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -18,15 +19,40 @@ public class UsersController {
     @Resource
     private UsersService usersService;
 
-    @RequestMapping(value = "")
-    public ModelAndView goIndexPage(String topoId) {
+    @RequestMapping(value = "goShowAllUsersIndexPage")
+    public ModelAndView goShowAllUsersIndexPage() {
 
-        return null;
+        return new ModelAndView("layouts.application_layout.showAllUsers");
+    }
+
+    @RequestMapping(value = "goCreateUsersIndexPage")
+    public ModelAndView goCreateUsersIndexPage() {
+
+        return new ModelAndView("layouts.application_layout.createUsers");
+    }
+
+    @RequestMapping(value = "goUpdateUsersIndexPage")
+    public ModelAndView goUpdateUsersIndexPage(String usersId) {
+
+        return new ModelAndView("layouts.application_layout.updateUsers");
     }
 
     @RequestMapping(value = "searchUsers")
-    public Result searchUsers(String userName) {
+    public
+    @ResponseBody
+    Result searchUsers() throws Exception {
 
-        return usersService.searchUsers(userName);
+        return usersService.searchUsers();
     }
+
+    @RequestMapping(value = "deleteUser")
+    public
+    @ResponseBody
+    Result deleteUser(String usersId) throws Exception {
+
+        // return usersService.searchUsers(userName);
+        return null;
+    }
+
+
 }

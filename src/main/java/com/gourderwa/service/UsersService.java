@@ -5,7 +5,6 @@ import com.gourderwa.model.Result;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * @author Wei.Li on 2016/4/21.
@@ -17,13 +16,12 @@ public class UsersService {
     private UsersDao usersDao;
 
 
-    public Result verifyLogin(boolean isAdmin, String userName, String passWd) {
-        return usersDao.verifyLogin(isAdmin, userName, passWd);
+    public Result verifyLogin(String userName, String passWd) {
+        return usersDao.verifyLogin(userName, passWd);
     }
 
-    public Result searchUsers(String userName) {
+    public Result searchUsers() {
 
-        final List<?> searchUsers = usersDao.searchUsers(userName);
-        return new Result(true, searchUsers);
+        return new Result(true, usersDao.searchUsers());
     }
 }

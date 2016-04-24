@@ -7,7 +7,7 @@
  * @type {{showErrorMsg: MSG."showErrorMsg"}} {{showErrorMsg: MSG."showErrorMsg"}}
  */
 var MSG = {
-    
+
     "showSucceedMsg": function (msg) {
         $("#msgModelBody").empty().append(msg);
         $("#msgModel").modal("toggle");

@@ -16,9 +16,9 @@ import javax.persistence.*;
 public class Users {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column
-    private int usersId;
+    private int userId;
 
     @Column(length = 20, unique = true, nullable = false)
     private String userName;
@@ -53,12 +53,16 @@ public class Users {
         this.type = type;
     }
 
-    public int getUsersId() {
-        return usersId;
+    public static boolean isAdmin(Users users) {
+        return users.getType() == 2;
     }
 
-    public void setUsersId(int usersId) {
-        this.usersId = usersId;
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getUserName() {

@@ -14,23 +14,37 @@
 %>
 <nav>
     <ul class="nav nav-pills pull-right" id="menu">
-        <li id="homeMenu" role="presentation" class="active"><a>首页 </a></li>
-        <li id="usersMenu" role="presentation"><a href="http://v3.bootcss.com/examples/jumbotron-narrow/#">用户管理</a>
-        </li>
-        <li id="candyMenu" role="presentation"><a href="http://v3.bootcss.com/examples/jumbotron-narrow/#">糖果定制</a>
-        </li>
-        <li id="orderMenu" role="presentation"><a href="http://v3.bootcss.com/examples/jumbotron-narrow/#">我的订单</a>
-        </li>
-        <c:if test="${sessionScope.get('users') == null}">
-            <li id="loginMenu" role="presentation"><a href="http://v3.bootcss.com/examples/jumbotron-narrow/#">登录</a>
+        <li id="homeMenu" role="presentation" class=""><a href="<%=basePath%>home/goIndexPage">首页</a></li>
+        <li id="candyMenu" role="presentation"><a href="<%=basePath%>candy/goIndexPage">选购糖果</a></li>
+
+        <c:if test="${sessionScope.get('users') != null}">
+
+            <li id="customizationMenu" role="presentation"><a href="<%=basePath%>candy/customization">手工定制</a>
             </li>
-            <li id="regiMenu" role="presentation"><a href="http://v3.bootcss.com/examples/jumbotron-narrow/#">注册</a>
+
+            <li id="usersMenu" role="presentation"><a href="<%=basePath%>users/goShowAllUsersIndexPage">用户管理</a>
+            </li>
+
+            <li id="orderFormManage" role="presentation"><a href="<%=basePath%>orderForm/orderFormShowAllGoIndexPage">订单管理</a>
+            </li>
+            <li id="myMenu" role="presentation" class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                   aria-expanded="false">
+                    <%=((Users) session.getAttribute("users")).getUserName()%> <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">个人中心</a></li>
+                    <li id="myOrderFormMenu" role="presentation"><a
+                            href="<%=basePath%>orderForm/orderFormShowAllForMyGoIndexPage">我的订单</a></li>
+                    <li><a href="<%=basePath%>login/loginOut">退出登录</a></li>
+                </ul>
             </li>
         </c:if>
-        <c:if test="${sessionScope.get('users') != null}">
-            <li id="currUserMenu" role="presentation"><a
-                    href="http://v3.bootcss.com/examples/jumbotron-narrow/#"><%=((Users) session.getAttribute("users")).getUserName()%>
-            </a>
+
+        <c:if test="${sessionScope.get('users') == null}">
+            <li id="loginMenu" role="presentation"><a href="<%=basePath%>login/goIndexPage">登录</a>
+            </li>
+            <li id="registerMenu" role="presentation"><a href="http://v3.bootcss.com/examples/jumbotron-narrow/#">注册</a>
             </li>
         </c:if>
 
@@ -41,7 +55,7 @@
 <script>
 
     //菜单激活控制
-    var activeMenu = '${sessionScope.activeMenu}';
+    var activeMenu = '${activeMenu}';
     if (activeMenu) {
         $("#menu").find("li .active").removeClass("active");
         $("#" + activeMenu).addClass("active");

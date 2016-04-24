@@ -32,6 +32,7 @@
     <script type="application/javascript" src="<%=basePath%>resources/js/jquery-2.2.3.min.js"></script>
     <script type="application/javascript" src="<%=basePath%>resources/bootstrap/js/bootstrap.min.js"></script>
     <script type="application/javascript" src="<%=basePath%>resources/js/public.js"></script>
+
     <script type="text/javascript">
 
         try {
@@ -165,7 +166,7 @@
         </div>
     </div>
 
-    <div id="content" style="min-height: 450px;">
+    <div id="content" style="min-height: 400px;">
         <tiles:insertAttribute name="main-container"/>
     </div>
 

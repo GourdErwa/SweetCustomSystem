@@ -63,8 +63,6 @@
         <input type="text" id="userName" class="form-control" placeholder="用户名" required autofocus>
         <label for="passWd" class="sr-only">密码</label>
         <input type="password" id="passWd" class="form-control" placeholder="密码" required>
-            <input type="checkbox" name="isAdmin"> &nbsp;&nbsp;管理员
-        <br>
         <button class="btn btn-lg btn-primary btn-block" type="button" id="login" style="margin-top: 10px;">登录</button>
     </form>
 </div>
@@ -73,13 +71,14 @@
 </html>
 <script>
 
+    var referer = '${Referer}';
+
     $(function () {
 
         $("#login").click(function () {
 
             var userName = $("#userName").val().trim();
             var passWd = $("#passWd").val().trim();
-            var isAdmin = $("[name='isAdmin']").is(':checked');
             if (userName == "" || passWd == "") {
                 alert("请输入用户名密码");
                 return;
@@ -89,7 +88,6 @@
                 type: "POST",
                 url: "<%=basePath%>" + "login/verifyLogin",
                 data: {
-                    "isAdmin": isAdmin,
                     "userName": userName,
                     "passWd": passWd
                 },
@@ -97,7 +95,11 @@
                 success: function (data) {
                     console.log(data);
                     if (data.success) {
-                        window.location.href = "<%=basePath%>" + "home/goIndexPage";
+                        if (referer.indexOf('<%=basePath%>') != -1 && referer.indexOf("login/verifyLogin") == -1) {
+                            window.location.href = referer;
+                        } else {
+                            window.location.href = "<%=basePath%>" + "home/goIndexPage";
+                        }
                     } else {
                         if (data.data) {
                             MSG.showErrorMsg(data.data);

@@ -9,12 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 主题切换
+ *
  * @author wei.Li
  */
 @Controller
 @RequestMapping("themeSwitchover")
 public class ThemeSwitchoverController {
 
+    /**
+     * 主题切换
+     */
     @RequestMapping(value = "")
     public
     @ResponseBody

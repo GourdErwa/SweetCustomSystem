@@ -4,7 +4,7 @@
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
 <!-- Footer -->
-<footer class="footer">
+<footer class="footer" style="margin-top: 15px">
     <p>© Company 2016</p>
     主题:&nbsp;
     <select id="themeSwitchover">
