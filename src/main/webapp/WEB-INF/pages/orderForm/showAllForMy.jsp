@@ -12,7 +12,7 @@
 %>
 <html>
 <head>
-    <title>订单中心-${applicationScope.projectName}</title>
+    <title>我的订单-${applicationScope.projectName}</title>
     <jsp:include page="../public/datatables-bootstrap-js-css.jsp"/>
 </head>
 <body>

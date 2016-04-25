@@ -171,7 +171,7 @@ public class Candy {
         /**
          * 下架
          */
-        OffSshelf("下架");
+        UnShelve("下架");
 
 
         private String describe;

@@ -102,7 +102,7 @@
                 success: function (data) {
                     console.log(data);
                     if (data.success) {
-                        window.location.href = '<%=basePath%>orderForm/orderFormShowOneGoIndexPage?orderFormId=' + data.data;
+                        window.location.href = '<%=basePath%>orderForm/showOneForMy?orderFormId=' + data.data;
                     } else {
                         if (data.data) {
                             MSG.showErrorMsg(data.data);

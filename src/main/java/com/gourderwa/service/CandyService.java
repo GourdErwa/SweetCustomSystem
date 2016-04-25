@@ -37,9 +37,9 @@ public class CandyService {
         return candyDao.searchCandyById(candyId);
     }
 
-    //分类查询糖果
-    public Result searchCandies(int candyCategoryId) {
-        return new Result(true, candyDao.searchCandies(candyCategoryId));
+    //分类 - 状态 查询糖果
+    public Result searchCandies(int candyCategoryId,Candy.State state) {
+        return new Result(true, candyDao.searchCandies(candyCategoryId,state));
     }
 
     //验证糖果名字

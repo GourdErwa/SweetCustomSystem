@@ -24,8 +24,8 @@ public class CandyDao extends HibernateTemplateDao {
         return hibernateTemplate.findByCriteria(detachedCriteria);
     }
 
-    //分类查询糖果
-    public List<?> searchCandies(int candyCategoryId) {
+    //分类 - 状态 查询糖果
+    public List<?> searchCandies(int candyCategoryId,Candy.State state) {
 
         final DetachedCriteria detachedCriteria =
                 DetachedCriteria.forClass(Candy.class)
@@ -33,6 +33,9 @@ public class CandyDao extends HibernateTemplateDao {
 
         if (candyCategoryId > -1) {
             detachedCriteria.add(Restrictions.eq("candyCategory.candyCategoryId", candyCategoryId));
+        }
+        if (state != null) {
+            detachedCriteria.add(Restrictions.eq("state", state));
         }
         return hibernateTemplate.findByCriteria(detachedCriteria);
     }

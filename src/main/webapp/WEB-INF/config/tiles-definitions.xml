@@ -37,24 +37,35 @@
 
     <!--糖果定制页-->
     <definition name="layouts.application_layout.candy" extends="layouts.public_layout">
-        <put-attribute name="main-container" value="/WEB-INF/pages/candy/showAllCandy.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/pages/candy/showAll.jsp"/>
+    </definition>
+    <definition name="layouts.application_layout.candy.manageCandy" extends="layouts.public_layout">
+        <put-attribute name="main-container" value="/WEB-INF/pages/candy/manageShowAll.jsp"/>
     </definition>
     <definition name="layouts.application_layout.candy.customization" extends="layouts.public_layout">
         <put-attribute name="main-container" value="/WEB-INF/pages/candy/customization.jsp"/>
     </definition>
     <definition name="layouts.application_layout.candy.showOne" extends="layouts.public_layout">
-        <put-attribute name="main-container" value="/WEB-INF/pages/candy/showOne.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/pages/candy/showOneForBuy.jsp"/>
     </definition>
 
     <!-- 订单管理 -->
     <definition name="layouts.application_layout.orderForm.insert" extends="layouts.public_layout">
         <put-attribute name="main-container" value="/WEB-INF/pages/orderForm/insert.jsp"/>
     </definition>
-    <definition name="layouts.application_layout.orderForm.showOne" extends="layouts.public_layout">
-        <put-attribute name="main-container" value="/WEB-INF/pages/orderForm/showOne.jsp"/>
+    <definition name="layouts.application_layout.orderForm.showOneForMy" extends="layouts.public_layout">
+        <put-attribute name="main-container" value="/WEB-INF/pages/orderForm/showOneForMy.jsp"/>
     </definition>
-    <definition name="layouts.application_layout.orderForm.showAll" extends="layouts.public_layout">
-        <put-attribute name="main-container" value="/WEB-INF/pages/orderForm/showAll.jsp"/>
+    <definition name="layouts.application_layout.orderForm.showAllForMy" extends="layouts.public_layout">
+        <put-attribute name="main-container" value="/WEB-INF/pages/orderForm/showAllForMy.jsp"/>
     </definition>
+    <definition name="layouts.application_layout.orderForm.manageShowOne" extends="layouts.public_layout">
+        <put-attribute name="main-container" value="/WEB-INF/pages/orderForm/manageShowOne.jsp"/>
+    </definition>
+    <definition name="layouts.application_layout.orderForm.manageShowAll" extends="layouts.public_layout">
+        <put-attribute name="main-container" value="/WEB-INF/pages/orderForm/manageShowAll.jsp"/>
+    </definition>
+
+
 
 </tiles-definitions>

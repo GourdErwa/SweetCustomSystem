@@ -30,9 +30,9 @@ public class OrderFormController {
     private CandyService candyService;
 
     //我的订单页面
-    @RequestMapping(value = "orderFormShowAllForMyGoIndexPage")
-    public ModelAndView orderFormShowAllForMyGoIndexPage(HttpServletRequest request) throws Exception {
-        ModelAndView modelAndView = new ModelAndView("layouts.application_layout.orderForm.showAll");
+    @RequestMapping(value = "showAllForMy")
+    public ModelAndView showAllForMy(HttpServletRequest request) throws Exception {
+        ModelAndView modelAndView = new ModelAndView("layouts.application_layout.orderForm.showAllForMy");
 
         final Users users = ((Users) request.getSession().getAttribute("users"));
         final Result searchOrderForms = orderFormService.searchOrderForms(users);
@@ -43,9 +43,9 @@ public class OrderFormController {
     }
 
     //订单管理页面
-    @RequestMapping(value = "orderFormShowAllGoIndexPage")
-    public ModelAndView orderFormShowAllGoIndexPage() throws Exception {
-        ModelAndView modelAndView = new ModelAndView("layouts.application_layout.orderForm.showAll");
+    @RequestMapping(value = "manageShowAll")
+    public ModelAndView manageShowAll() throws Exception {
+        ModelAndView modelAndView = new ModelAndView("layouts.application_layout.orderForm.manageShowAll");
 
         final Result searchOrderForms = orderFormService.searchOrderForms();
         modelAndView.addObject("activeMenu", ActiveMenu.orderFormManage);
@@ -54,11 +54,11 @@ public class OrderFormController {
         return modelAndView;
     }
 
-    //展示单个订单页面
-    @RequestMapping(value = "orderFormShowOneGoIndexPage")
-    public ModelAndView orderFormShowOneGoIndexPage(int orderFormId) throws Exception {
+    //展示用户单个订单页面
+    @RequestMapping(value = "showOneForMy")
+    public ModelAndView showOneForMy(int orderFormId) throws Exception {
 
-        ModelAndView modelAndView = new ModelAndView("layouts.application_layout.orderForm.showOne");
+        ModelAndView modelAndView = new ModelAndView("layouts.application_layout.orderForm.showOneForMy");
         final OrderForm orderForm = orderFormService.searchOrderFormById(orderFormId);
         modelAndView.addObject("activeMenu", ActiveMenu.myOrderForm);
         modelAndView.addObject("orderForm", orderForm);

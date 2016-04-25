@@ -10,6 +10,7 @@ public enum ActiveMenu {
 
     homeMenu,
     candyMenu,
+    manageCandy,
     customizationMenu,
     usersMenu,
 

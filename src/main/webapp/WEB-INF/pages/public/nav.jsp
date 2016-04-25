@@ -14,19 +14,19 @@
 %>
 <nav>
     <ul class="nav nav-pills pull-right" id="menu">
+
         <li id="homeMenu" role="presentation" class=""><a href="<%=basePath%>home/goIndexPage">首页</a></li>
         <li id="candyMenu" role="presentation"><a href="<%=basePath%>candy/goIndexPage">选购糖果</a></li>
 
         <c:if test="${sessionScope.get('users') != null}">
 
-            <li id="customizationMenu" role="presentation"><a href="<%=basePath%>candy/customization">手工定制</a>
-            </li>
+            <li id="customizationMenu" role="presentation"><a href="<%=basePath%>candy/customization">手工定制</a></li>
+            <c:if test="${sessionScope.get('isAdmin') != null}">
+                <li id="manageCandy" role="presentation"><a href="<%=basePath%>candy/manageCandy">糖果管理</a></li>
+                <li id="orderFormManage" role="presentation"><a href="<%=basePath%>orderForm/manageShowAll">订单管理</a></li>
+                <li id="usersMenu" role="presentation"><a href="<%=basePath%>users/goShowAllUsersIndexPage">用户管理</a></li>
+            </c:if>
 
-            <li id="usersMenu" role="presentation"><a href="<%=basePath%>users/goShowAllUsersIndexPage">用户管理</a>
-            </li>
-
-            <li id="orderFormManage" role="presentation"><a href="<%=basePath%>orderForm/orderFormShowAllGoIndexPage">订单管理</a>
-            </li>
             <li id="myMenu" role="presentation" class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                    aria-expanded="false">
@@ -35,17 +35,15 @@
                 <ul class="dropdown-menu">
                     <li><a href="#">个人中心</a></li>
                     <li id="myOrderFormMenu" role="presentation"><a
-                            href="<%=basePath%>orderForm/orderFormShowAllForMyGoIndexPage">我的订单</a></li>
+                            href="<%=basePath%>orderForm/showAllForMy">我的订单</a></li>
                     <li><a href="<%=basePath%>login/loginOut">退出登录</a></li>
                 </ul>
             </li>
         </c:if>
 
         <c:if test="${sessionScope.get('users') == null}">
-            <li id="loginMenu" role="presentation"><a href="<%=basePath%>login/goIndexPage">登录</a>
-            </li>
-            <li id="registerMenu" role="presentation"><a href="http://v3.bootcss.com/examples/jumbotron-narrow/#">注册</a>
-            </li>
+            <li id="loginMenu" role="presentation"><a href="<%=basePath%>login/goIndexPage">登录</a></li>
+            <li id="registerMenu" role="presentation"><a href="http://v3.bootcss.com/examples/jumbotron-narrow/#">注册</a></li>
         </c:if>
 
     </ul>
