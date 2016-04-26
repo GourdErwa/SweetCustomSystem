@@ -6,8 +6,12 @@ springMvc4 + hibernate5 + maven 构建
 2.sql 见 src 目录下 sql 文件
 
 3.配置文件见 src/resources 目录 
+
     springMvc 以 location="classpath:*-gourderwa.properties" 装载配置,若修改配置文件名称对应修改此处
+    
     指定 ehcache.xml 中 diskStore path 存储目录
+    
     数据库连接 jdbc-hibernate-config-gourderwa.properties
+    
     项目名称配置 project-gourderwa.properties 指定图片上传目录
 
