@@ -28,11 +28,11 @@
     </definition>
     <!--用户管理-新建页-->
     <definition name="layouts.application_layout.createUsers" extends="layouts.public_layout">
-        <put-attribute name="main-container" value="/WEB-INF/pages/users/createUsers.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/pages/users/createUser.jsp"/>
     </definition>
     <!--用户管理-修改页-->
     <definition name="layouts.application_layout.updateUsers" extends="layouts.public_layout">
-        <put-attribute name="main-container" value="/WEB-INF/pages/users/updateUsers.jsp"/>
+        <put-attribute name="main-container" value="/WEB-INF/pages/users/updateUser.jsp"/>
     </definition>
 
     <!--糖果定制页-->
@@ -65,7 +65,6 @@
     <definition name="layouts.application_layout.orderForm.manageShowAll" extends="layouts.public_layout">
         <put-attribute name="main-container" value="/WEB-INF/pages/orderForm/manageShowAll.jsp"/>
     </definition>
-
 
 
 </tiles-definitions>

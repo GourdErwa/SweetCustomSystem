@@ -14,10 +14,18 @@
 <head>
     <title>用户管理-新建用户-<%=application.getAttribute("projectName")%>
     </title>
+    <style>
+
+        .col-sm-10 {
+            max-width: 330px;
+        }
+
+
+    </style>
 </head>
 <body>
-<div class="container">
-    <jsp:include page="./../public/nav.jsp"/>
+<div class="container" style="width:50%">
+    <%--<jsp:include page="./../public/nav.jsp"/>--%>
     <div>
 
         <form class="form-horizontal">
@@ -25,7 +33,7 @@
                 <label for="userName" class="col-sm-2 control-label">用户名</label>
 
                 <div class="col-sm-10">
-                    <input type="email" class="form-control" id="userName" placeholder="用户名">
+                    <input type="text" class="form-control" id="userName" placeholder="用户名">
                 </div>
             </div>
             <div class="form-group">
@@ -36,17 +44,31 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="passWd" class="col-sm-2 control-label">确认密码</label>
+
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" id="passWdConfirm" placeholder="确认密码">
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="phone" class="col-sm-2 control-label">电话</label>
 
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" id="phone" placeholder="电话">
+                    <input type="text" class="form-control" id="phone" placeholder="电话">
                 </div>
             </div>
             <div class="form-group">
                 <label for="email" class="col-sm-2 control-label">邮箱</label>
 
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" id="email" placeholder="邮箱">
+                    <input type="text" class="form-control" id="email" placeholder="邮箱">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="address" class="col-sm-2 control-label">地址</label>
+
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="address" placeholder="地址">
                 </div>
             </div>
             <div class="form-group">
@@ -75,9 +97,10 @@
 
             var userName = $("#userName").val();
             var passWd = $("#passWd").val();
+            var passWdConfirm = $("#passWdConfirm").val();
             var phone = $("#phone").val();
             var email = $("#email").val();
-
+            var address = $("#address").val();
             if (userName == "" || passWd == "") {
                 $("#entity").modal("toggle");
                 MSG.showErrorMsg("用户名密码必填");
@@ -86,25 +109,28 @@
 
             $.ajax({
                 type: "POST",
-                url: "<%=basePath%>" + "UserServlet",
+                url: "<%=basePath%>" + "users/createUser",
                 data: {
                     "method": "createUser",
                     "userName": userName,
                     "passWd": passWd,
                     "phone": phone,
-                    "email": email
+                    "email": email,
+                    "address": address
                 },
                 dataType: "json",
                 success: function (data) {
-                    MSG.showErrorMsg(data.data);
                     if (data.success) {
-                        setTimeout(reload, 3000);
+                        setTimeout(window.location.href = "<%=basePath%>" + "login/goIndexPage", 3000);
+                        alert("用户注册成功！");
+                    } else {
+                        MSG.showErrorMsg("用户名已存在！");
                     }
+                },
+                error: function () {
                 }
             });
         });
-
-
     });
 
 </script>

@@ -25,7 +25,7 @@ public class CandyDao extends HibernateTemplateDao {
     }
 
     //分类 - 状态 查询糖果
-    public List<?> searchCandies(int candyCategoryId,Candy.State state) {
+    public List<?> searchCandies(int candyCategoryId, Candy.State state) {
 
         final DetachedCriteria detachedCriteria =
                 DetachedCriteria.forClass(Candy.class)

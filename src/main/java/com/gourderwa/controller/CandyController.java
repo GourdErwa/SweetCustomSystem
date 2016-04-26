@@ -48,12 +48,12 @@ public class CandyController {
 
     //糖果管理
     @RequestMapping(value = "manageCandy")
-    public ModelAndView manageCandy(String candyCategoryId,Candy.State state) throws Exception {
+    public ModelAndView manageCandy(String candyCategoryId, Candy.State state) throws Exception {
 
         final ModelAndView modelAndView = new ModelAndView("layouts.application_layout.candy.manageCandy");
 
         final int categoryId = Strings.isNullOrEmpty(candyCategoryId) ? -1 : Integer.parseInt(candyCategoryId);
-        final Result result = candyService.searchCandies(categoryId,state);
+        final Result result = candyService.searchCandies(categoryId, state);
         final List<Candy> data = ((List<Candy>) result.getData());
         modelAndView.addObject("candies", data);
         modelAndView.addObject("categoryId", categoryId);
@@ -106,7 +106,7 @@ public class CandyController {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
             return null;
         } finally {
             if (in != null) {

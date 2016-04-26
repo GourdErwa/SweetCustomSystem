@@ -53,8 +53,6 @@ public class LoginController {
             }
         }
 
-        final String referer = request.getHeader("Referer");
-        System.out.println(referer);
         return result;
     }
 

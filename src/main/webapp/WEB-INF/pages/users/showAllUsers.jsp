@@ -29,7 +29,7 @@
             <th>用户名</th>
             <th>电话</th>
             <th>邮箱</th>
-            <th>操作</th>
+            <th>地址</th>
         </tr>
         </thead>
     </table>
@@ -54,8 +54,6 @@
             "search": "检索",
             "sLoadingRecords": "载入中...",
             "oPaginate": {
-                "sFirst": "首页",
-                "sLast": "末页",
                 "sNext": ">",
                 "sPrevious": "<"
             }
@@ -85,10 +83,11 @@
                 },
                 "targets": 2
             },
+
             {
                 "render": function (data, type, row) {
                     return "<button  type=\"button\" class=\"btn btn-warning btn-xs\" " +
-                            "onclick=\"window.location.href ='<%=basePath%>pages/user/updateUser.jsp?usersId=" + data + "'\">修改</button>" +
+                            "onclick=\"window.location.href ='<%=basePath%>users/goUpdateUsersIndexPage?usersId=" + data + "'\">修改</button>" +
                             "&nbsp;&nbsp;<button type=\"button\" class=\"btn btn-danger btn-xs js-del\" usersId=" + data + ">删除</button>";
                 },
                 "orderable": false,
@@ -116,9 +115,11 @@
                     },
                     dataType: "json",
                     success: function (data) {
-                        MSG.showErrorMsg(data.data);
                         if (data.success) {
                             table.row(".js-del-tr").remove().draw(false);
+                            alert("删除成功！")
+                        } else {
+                            MSG.showErrorMsg(data.data);
                         }
                     }
                 });

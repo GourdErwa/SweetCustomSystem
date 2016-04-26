@@ -50,11 +50,11 @@
         <hr>
         <p>糖果商品状态:</p>
         <div class="list-group" id="candyStates">
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="candyStates" value="Audi">审核中
-                    </label>
-                </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" name="candyStates" value="Audi">审核中
+                </label>
+            </div>
             <div class="checkbox">
                 <label>
                     <input type="checkbox" name="candyStates" value="SaleIn">售货中

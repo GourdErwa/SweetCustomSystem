@@ -17,6 +17,33 @@
 </head>
 <body>
 
+<div class="modal fade" id="manageOrderForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">订单管理</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">订单状态:</label>
+                        <input type="text" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="control-label">商家留言:</label>
+                        <textarea class="form-control" id="message-text"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div>
     <table id="showTable" class="table table-striped" cellspacing="0" width="100%">
         <thead>
@@ -62,9 +89,9 @@
         },
         "columns": [
             {"data": "orderFormId"},
-            {"data": "candy.users.userName"},
-            {"data": "candy.candyName"},
-            {"data": "candy.candyCategory.candyCategoryName"},
+            {"data": "users.userName"},
+            {"data": "candyName"},
+            {"data": "candyCategory.candyCategoryName"},
             {"data": "state"},
             {"data": "orderTime"},
             {"data": "orderFormId"}
@@ -87,7 +114,7 @@
                     return data;
                 },
                 "targets": 2
-            },{
+            }, {
                 "render": function (data, type, row) {
                     return data;
                 },
@@ -108,7 +135,8 @@
             ,
             {
                 "render": function (data, type, row) {
-                    return "操作按钮" +data;
+                    return "<button type=\"button\" data =\""+data+"\"  class=\"btn btn-primary js-updateOrderForm\" data-toggle=\"modal\"  data-target=\"#manageOrderForm\" data-whatever=\"@getbootstrap\">" +
+                            "修改订单</button>";
                 },
                 "targets": 6
             }
@@ -118,5 +146,10 @@
 
     dataTableSetting.data = orderForms;
     table = $showTable.DataTable(dataTableSetting);
+
+
+    $(".js-updateOrderForm").on('click',function () {
+        console.log("===");
+    });
 
 </script>

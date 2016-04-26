@@ -23,8 +23,10 @@
             <li id="customizationMenu" role="presentation"><a href="<%=basePath%>candy/customization">手工定制</a></li>
             <c:if test="${sessionScope.get('isAdmin') != null}">
                 <li id="manageCandy" role="presentation"><a href="<%=basePath%>candy/manageCandy">糖果管理</a></li>
-                <li id="orderFormManage" role="presentation"><a href="<%=basePath%>orderForm/manageShowAll">订单管理</a></li>
-                <li id="usersMenu" role="presentation"><a href="<%=basePath%>users/goShowAllUsersIndexPage">用户管理</a></li>
+                <li id="orderFormManage" role="presentation"><a href="<%=basePath%>orderForm/manageShowAll">订单管理</a>
+                </li>
+                <li id="usersMenu" role="presentation"><a href="<%=basePath%>users/goShowAllUsersIndexPage">用户管理</a>
+                </li>
             </c:if>
 
             <li id="myMenu" role="presentation" class="dropdown">
@@ -33,7 +35,7 @@
                     <%=((Users) session.getAttribute("users")).getUserName()%> <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">个人中心</a></li>
+                    <li><a href="<%=basePath%>users/goUpdateUsersIndexPage?usersId=<%=((Users) session.getAttribute("users")).getUserId()%>">个人中心</a></li>
                     <li id="myOrderFormMenu" role="presentation"><a
                             href="<%=basePath%>orderForm/showAllForMy">我的订单</a></li>
                     <li><a href="<%=basePath%>login/loginOut">退出登录</a></li>
@@ -43,7 +45,8 @@
 
         <c:if test="${sessionScope.get('users') == null}">
             <li id="loginMenu" role="presentation"><a href="<%=basePath%>login/goIndexPage">登录</a></li>
-            <li id="registerMenu" role="presentation"><a href="http://v3.bootcss.com/examples/jumbotron-narrow/#">注册</a></li>
+            <li id="registerMenu" role="presentation"><a href="<%=basePath%>users/goCreateUsersIndexPage">注册</a>
+            </li>
         </c:if>
 
     </ul>
