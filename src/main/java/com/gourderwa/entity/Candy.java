@@ -25,11 +25,11 @@ public class Candy {
      * 用户 id
      */
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "userId", insertable = false, updatable = false)
+    @JoinColumn(name = "userId")
     private Users users;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "candyCategoryId", updatable = false, nullable = false)
+    @JoinColumn(name = "candyCategoryId")
     private CandyCategory candyCategory;
 
     /**

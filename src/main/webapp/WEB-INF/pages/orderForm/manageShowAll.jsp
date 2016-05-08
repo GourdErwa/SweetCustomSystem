@@ -27,8 +27,13 @@
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label for="recipient-name" class="control-label">订单状态:</label>
-                        <input type="text" class="form-control" id="recipient-name">
+                        <label class="control-label">请选择:</label>
+                        <div class="controls">
+                            <select class="form-control">
+                                <option>发货</option>
+                                <option>驳回</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="message-text" class="control-label">商家留言:</label>
@@ -135,8 +140,22 @@
             ,
             {
                 "render": function (data, type, row) {
-                    return "<button type=\"button\" data =\""+data+"\"  class=\"btn btn-primary js-updateOrderForm\" data-toggle=\"modal\"  data-target=\"#manageOrderForm\" data-whatever=\"@getbootstrap\">" +
-                            "修改订单</button>";
+                    return "<button type=\"button\" " +
+                    "data =\""+data+"\"  " +
+                    "class=\"btn btn-primary js-updateOrderForm\" " +
+                    "data-toggle=\"modal\"  " +
+                    "data-target=\"#manageOrderForm\" " +
+                    "data-whatever=\"@getbootstrap\">" +
+                    "修改订单" +
+                    "</button>";
+                    /*return row.state()==("WaitingForDelivery")?"<button type=\"button\" " +
+                            "data =\""+data+"\"  " +
+                            "class=\"btn btn-primary js-updateOrderForm\" " +
+                            "data-toggle=\"modal\"  " +
+                            "data-target=\"#manageOrderForm\" " +
+                            "data-whatever=\"@getbootstrap\">" +
+                            "修改订单" +
+                            "</button>":"<span style=\"display:none\">  ";*/
                 },
                 "targets": 6
             }

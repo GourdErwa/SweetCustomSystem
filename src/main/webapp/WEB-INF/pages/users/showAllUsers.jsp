@@ -87,7 +87,7 @@
             {
                 "render": function (data, type, row) {
                     return "<button  type=\"button\" class=\"btn btn-warning btn-xs\" " +
-                            "onclick=\"window.location.href ='<%=basePath%>users/goUpdateUsersIndexPage?usersId=" + data + "'\">修改</button>" +
+                            "onclick=\"window.open('<%=basePath%>users/goUpdateUsersIndexPage?usersId=" + data + "')\">修改</button>" +
                             "&nbsp;&nbsp;<button type=\"button\" class=\"btn btn-danger btn-xs js-del\" usersId=" + data + ">删除</button>";
                 },
                 "orderable": false,

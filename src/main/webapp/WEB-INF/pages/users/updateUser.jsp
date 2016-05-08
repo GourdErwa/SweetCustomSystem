@@ -29,7 +29,7 @@
 
                 <div class="col-sm-10">
 
-                    <input type="text" class="form-control" id="userName"
+                    <input type="text" class="form-control" id="userName" readonly=true
                            value="${updateUsers.userName}">
                 </div>
             </div>
@@ -37,7 +37,7 @@
                 <label for="passWd" class="col-sm-2 control-label">密码</label>
 
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" id="passWd" placeholder="密码"
+                    <input type="text" class="form-control" id="passWd" placeholder="密码"
                            value="${updateUsers.passWd}">
                 </div>
             </div>
@@ -112,7 +112,6 @@
                 dataType: "json",
                 success: function (data) {
                     if (data.success) {
-                        window.location.href = "<%=basePath%>" + "users/goShowAllUsersIndexPage";
                         MSG.showSucceedMsg("修改成功！");
                     } else {
                         MSG.showErrorMsg("用户名已存在！");

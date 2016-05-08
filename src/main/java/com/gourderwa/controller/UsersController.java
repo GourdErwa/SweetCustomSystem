@@ -31,7 +31,7 @@ public class UsersController {
     @RequestMapping(value = "goCreateUsersIndexPage")
     public ModelAndView goCreateUsersIndexPage() {
         ModelAndView modelAndView = new ModelAndView("layouts.application_layout.createUsers");
-        modelAndView.addObject("activeMenu", ActiveMenu.myMenu);
+        modelAndView.addObject("activeMenu", ActiveMenu.registerMenu);
         return modelAndView;
     }
 
@@ -41,7 +41,7 @@ public class UsersController {
         ModelAndView modelAndView = new ModelAndView("layouts.application_layout.updateUsers");
         modelAndView.addObject("updateUsers", users);
 
-        modelAndView.addObject("activeMenu", ActiveMenu.usersMenu);
+        modelAndView.addObject("activeMenu", ActiveMenu.myMenu);
         return modelAndView;
     }
 
