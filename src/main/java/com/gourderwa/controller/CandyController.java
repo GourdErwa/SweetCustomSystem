@@ -57,7 +57,7 @@ public class CandyController {
         final List<Candy> data = ((List<Candy>) result.getData());
         modelAndView.addObject("candies", data);
         modelAndView.addObject("categoryId", categoryId);
-
+        modelAndView.addObject("state", state);
         modelAndView.addObject("activeMenu", ActiveMenu.manageCandy);
         return modelAndView;
     }
@@ -79,6 +79,24 @@ public class CandyController {
         modelAndView.addObject("activeMenu", ActiveMenu.candyMenu);
         return modelAndView;
     }
+
+    //修改某个糖果
+    @RequestMapping(value = "showOneForUpdate")
+    public ModelAndView showOneForUpdate(int candyId) throws Exception {
+        final ModelAndView modelAndView = new ModelAndView("layouts.application_layout.candy.showOneForUpdate");
+        modelAndView.addObject("candy", candyService.searchCandyById(candyId));
+        modelAndView.addObject("activeMenu", ActiveMenu.manageCandy);
+        return modelAndView;
+    }
+
+    //修改糖果
+    @RequestMapping(value = "updateCandy")
+    public
+    @ResponseBody
+    String updateCandy(HttpServletRequest request) throws Exception {
+        return candyService.updateCandy(request);
+    }
+
 
     //保存手工定制糖果
     @RequestMapping(value = "insertCustomizationCandy")

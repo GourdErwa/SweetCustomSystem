@@ -180,6 +180,15 @@ public class Candy {
             this.describe = describe;
         }
 
+        public static State forName(String name) {
+            for (State state : State.values()) {
+                if (state.name().equals(name)) {
+                    return state;
+                }
+            }
+            return null;
+        }
+
         public String getDescribe() {
             return describe;
         }

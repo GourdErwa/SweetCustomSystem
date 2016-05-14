@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author wei.Li
  */
-public class initSystemDatas {
+public class InitSystemData {
 
     public static final Users
             ADMIN = new Users("admin", "admin", "18601341999", "admin@163.com", "admin", 2);
@@ -41,7 +41,7 @@ public class initSystemDatas {
 
     public static List<Candy> getCandy() {
         final List<Candy> list = Lists.newArrayList();
-        for (int i = 0; i < 211; i++) {
+        for (int i = 0; i < 20; i++) {
             list.add(new Candy("糖果 " + i, ADMIN, SZ, Candy.State.SaleIn, "1.jpg", 100000, i, 1d));
         }
         return list;

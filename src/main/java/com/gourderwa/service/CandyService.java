@@ -89,4 +89,55 @@ public class CandyService {
         }
         return null;
     }
+
+    //修改糖果
+    public String updateCandy(HttpServletRequest request) throws IOException {
+
+        final Users users = ((Users) request.getSession().getAttribute("users"));
+        if (users == null) {
+            return "请登录后进行定制";
+        }
+
+        int candyId = Integer.parseInt(request.getParameter("candyId"));
+        String candyName = request.getParameter("candyName");
+        String state = request.getParameter("state");
+        double postage = Double.parseDouble(request.getParameter("postage"));
+
+
+        if (Strings.isNullOrEmpty(candyName)) {
+            return "请输入糖果名称";
+        }
+
+        //解析器解析request的上下文
+        final CommonsMultipartResolver multipartResolver
+                = new CommonsMultipartResolver(request.getSession().getServletContext());
+
+        //先判断request中是否包涵multipart类型的数据，
+        if (!multipartResolver.isMultipart(request)) {
+            return "未包含文件数据流";
+        }
+
+        Candy candy = candyDao.searchCandyById(candyId);
+        String uuidFileName = candy.getImage();
+
+        final MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
+        final Iterator<String> inter = multiRequest.getFileNames();
+        while (true) {
+            if (!(inter.hasNext())) break;
+            final MultipartFile file = multiRequest.getFile(inter.next());
+            if (file.getSize() < 1) {
+                continue;
+            }
+            uuidFileName = UUID.randomUUID().toString() + ".jpg";
+            file.transferTo(new File(ApplicationCache.imagesUploadAddress + "/" + uuidFileName));
+        }
+
+        candy.setCandyName(candyName);
+        candy.setPostage(postage);
+        candy.setState(Candy.State.forName(state));
+        candy.setImage(uuidFileName);
+        candyDao.updateCandy(candy);
+
+        return "true-" + candyId;
+    }
 }

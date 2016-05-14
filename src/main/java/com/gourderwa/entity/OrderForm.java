@@ -23,14 +23,14 @@ public class OrderForm {
      * 用户 id
      */
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "userId", updatable = false)
     private Users users;
 
     /**
      * 糖果 id
      */
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "candyId")
+    @JoinColumn(name = "candyId", updatable = false)
     private Candy candy;
 
     /**

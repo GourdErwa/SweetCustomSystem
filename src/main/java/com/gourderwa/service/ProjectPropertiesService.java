@@ -4,7 +4,7 @@ import com.gourderwa.cache.ApplicationCache;
 import com.gourderwa.entity.Candy;
 import com.gourderwa.entity.CandyCategory;
 import com.gourderwa.entity.Users;
-import com.gourderwa.initdata.initSystemDatas;
+import com.gourderwa.initdata.InitSystemData;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Value;
@@ -66,7 +66,7 @@ public class ProjectPropertiesService {
                             DetachedCriteria.forClass(Users.class)
                                     .add(Restrictions.eq("userName", "admin"))
                     ).isEmpty()) {
-                hibernateTemplate.save(initSystemDatas.ADMIN);
+                hibernateTemplate.save(InitSystemData.ADMIN);
             }
 
             //类别校验
@@ -74,24 +74,24 @@ public class ProjectPropertiesService {
                     DetachedCriteria.forClass(CandyCategory.class)
             );
             if (
-                    candyCategories.size() != initSystemDatas.getCandyCategory().size()) {
+                    candyCategories.size() != InitSystemData.getCandyCategory().size()) {
                 hibernateTemplate.deleteAll(candyCategories);
-                hibernateTemplate.save(initSystemDatas.ADMIN);
+                hibernateTemplate.save(InitSystemData.ADMIN);
             }
 
             return;
         }
 
         try {
-            for (Users users : initSystemDatas.getUsers()) {
+            for (Users users : InitSystemData.getUsers()) {
                 hibernateTemplate.save(users);
             }
 
-            for (CandyCategory candyCategory : initSystemDatas.getCandyCategory()) {
+            for (CandyCategory candyCategory : InitSystemData.getCandyCategory()) {
                 hibernateTemplate.save(candyCategory);
             }
 
-            for (Candy candy : initSystemDatas.getCandy()) {
+            for (Candy candy : InitSystemData.getCandy()) {
                 hibernateTemplate.save(candy);
             }
         } catch (DataAccessException e) {

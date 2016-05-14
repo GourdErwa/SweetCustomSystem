@@ -48,6 +48,9 @@
     <definition name="layouts.application_layout.candy.showOne" extends="layouts.public_layout">
         <put-attribute name="main-container" value="/WEB-INF/pages/candy/showOneForBuy.jsp"/>
     </definition>
+    <definition name="layouts.application_layout.candy.showOneForUpdate" extends="layouts.public_layout">
+        <put-attribute name="main-container" value="/WEB-INF/pages/candy/showOneForUpdate.jsp"/>
+    </definition>
 
     <!-- 订单管理 -->
     <definition name="layouts.application_layout.orderForm.insert" extends="layouts.public_layout">

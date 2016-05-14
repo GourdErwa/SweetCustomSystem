@@ -36,7 +36,7 @@ public class OrderFormController {
 
         final Users users = ((Users) request.getSession().getAttribute("users"));
         final Result searchOrderForms = orderFormService.searchOrderForms(users);
-        modelAndView.addObject("activeMenu", ActiveMenu.myOrderForm);
+        modelAndView.addObject("activeMenu", ActiveMenu.myMenu);
         modelAndView.addObject("orderForms", JSONTransform.jsonTransform(searchOrderForms.getData()));
 
         return modelAndView;
@@ -98,4 +98,13 @@ public class OrderFormController {
         return new ModelAndView("redirect:/orderForm/orderFormShowOneGoIndexPage?orderFormId=" + orderFormId);
     }
 
+    //修改订单
+    @RequestMapping(value = "updateOrderForm")
+    public
+    @ResponseBody
+    Result updateOrderForm(int orderFormId, OrderForm.State state, String reasonRejection)
+            throws Exception {
+
+        return orderFormService.updateOrderForm(orderFormId, state, reasonRejection);
+    }
 }
