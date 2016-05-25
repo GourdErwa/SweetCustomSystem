@@ -95,7 +95,7 @@ public class OrderFormController {
             throws Exception {
 
         orderFormService.updateOrderFormsSateAlreadySign(orderFormId);
-        return new ModelAndView("redirect:/orderForm/orderFormShowOneGoIndexPage?orderFormId=" + orderFormId);
+        return new ModelAndView("redirect:/orderForm/showOneForMy?orderFormId=" + orderFormId);
     }
 
     //修改订单

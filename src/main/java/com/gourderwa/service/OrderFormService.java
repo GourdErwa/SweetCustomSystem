@@ -44,9 +44,9 @@ public class OrderFormService {
     //插入订单数据
     public int insertOrderForms(HttpServletRequest request, int candyId, int num, String address, String guestBook) {
         final Candy candy = candyDao.searchCandyById(candyId);
-        candy.setSalesVolume(candy.getSalesVolume() + 1);
-        final int stock = candy.getStock() - 1;
-        candy.setStock(stock < 1 ? 0 : stock);
+        candy.setSalesVolume(candy.getSalesVolume() + num);
+        final int stock = candy.getStock() - num;
+        candy.setStock(stock < num ? 0 : stock - num);
         final Users users = (Users) request.getSession().getAttribute("users");
         OrderForm orderForm =
                 new OrderForm(usersDao.searchUserById(users.getUserId()), candy, num, address, OrderForm.State.WaitingForDelivery, null, TimesUtils.DATE_FORMATTER.format(new Date()), guestBook);

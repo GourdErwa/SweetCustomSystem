@@ -68,6 +68,14 @@
                            value="${candy.postage}">
                 </div>
             </div>
+            <div class="form-group">
+                <label for="stock" class="col-sm-2 control-label">库存</label>
+
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" name="stock" id="stock" placeholder="库存"
+                           value="${candy.stock}">
+                </div>
+            </div>
 
             <div class="form-group">
                 <label for="file-Portrait" class="col-sm-2 control-label">图片</label>

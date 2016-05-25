@@ -102,6 +102,7 @@ public class CandyService {
         String candyName = request.getParameter("candyName");
         String state = request.getParameter("state");
         double postage = Double.parseDouble(request.getParameter("postage"));
+        int stock = Integer.parseInt(request.getParameter("stock"));
 
 
         if (Strings.isNullOrEmpty(candyName)) {
@@ -134,6 +135,7 @@ public class CandyService {
 
         candy.setCandyName(candyName);
         candy.setPostage(postage);
+        candy.setStock(stock);
         candy.setState(Candy.State.forName(state));
         candy.setImage(uuidFileName);
         candyDao.updateCandy(candy);
