@@ -66,5 +66,10 @@ public class CandyDao extends HibernateTemplateDao {
         return ((Integer) save);
     }
 
+    //修改糖果数据
+    public void updateCandy(Candy candy) {
+        hibernateTemplate.saveOrUpdate(candy);
+    }
+
 
 }

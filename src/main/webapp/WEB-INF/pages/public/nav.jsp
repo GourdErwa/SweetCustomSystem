@@ -35,7 +35,9 @@
                     <%=((Users) session.getAttribute("users")).getUserName()%> <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="<%=basePath%>users/goUpdateUsersIndexPage?usersId=<%=((Users) session.getAttribute("users")).getUserId()%>">个人中心</a></li>
+                    <li>
+                        <a href="<%=basePath%>users/goUpdateUsersIndexPage?usersId=<%=((Users) session.getAttribute("users")).getUserId()%>">个人中心</a>
+                    </li>
                     <li id="myOrderFormMenu" role="presentation"><a
                             href="<%=basePath%>orderForm/showAllForMy">我的订单</a></li>
                     <li><a href="<%=basePath%>login/loginOut">退出登录</a></li>

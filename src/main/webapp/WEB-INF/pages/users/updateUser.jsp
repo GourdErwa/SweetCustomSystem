@@ -85,7 +85,7 @@
             $userName.attr("readonly", true);
         }
         $("#update").click(function () {
-            var userId ='${updateUsers.userId}';
+            var userId = '${updateUsers.userId}';
             var userName = $("#userName").val();
             var passWd = $("#passWd").val();
             var phone = $("#phone").val();

@@ -12,9 +12,8 @@
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
         </p>
         <div class="jumbotron">
-            <h1>Hello, world!</h1>
-            <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some
-                responsive-range viewport sizes to see it in action.</p>
+            <h2>糖果在线定制选购系统</h2>
+            <p>注册登录后可以定制自己喜欢的糖果，定制申请通过后即可购买.</p>
         </div>
         <div class="row" style="margin-bottom: 30px;">
             <div class="row placeholders">

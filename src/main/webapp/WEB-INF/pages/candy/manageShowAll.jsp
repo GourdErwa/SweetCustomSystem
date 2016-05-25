@@ -16,7 +16,7 @@
             <div class="row placeholders">
                 <c:forEach var="candy" items="${candies}">
                     <div class="col-xs-6 col-sm-3 placeholder">
-                        <a href="<%=basePath%>candy/showOne?candyId=${candy.candyId}" class="thumbnail">
+                        <a href="<%=basePath%>candy/showOneForUpdate?candyId=${candy.candyId}" class="thumbnail">
                             <img src="<%=basePath%>candy/downImage?downImageUrl=${candy.image}" class="img-rounded"
                                  alt="未知">
                         </a>
@@ -32,7 +32,7 @@
     </div>
     <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
 
-        <button type="button" class="btn btn-info">搜索</button>
+        <button type="button" id="search" class="btn btn-info">搜索</button>
 
         <hr>
         <p>糖果类别:</p>
@@ -40,7 +40,7 @@
             <c:forEach var="candyCategory" items="${applicationScope.candyCategories}">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" name="candyCategoriesCheckBox" value="${candyCategory.candyCategoryId}">
+                        <input type="radio" name="candyCategoriesCheckBox" value="${candyCategory.candyCategoryId}">
                             ${candyCategory.candyCategoryName}
                     </label>
                 </div>
@@ -52,17 +52,17 @@
         <div class="list-group" id="candyStates">
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" name="candyStates" value="Audi">审核中
+                    <input type="radio" name="candyStates" value="Audi">审核中
                 </label>
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" name="candyStates" value="SaleIn">售货中
+                    <input type="radio" name="candyStates" value="SaleIn">售货中
                 </label>
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" name="candyStates" value="UnShelve">下架
+                    <input type="radio" name="candyStates" value="UnShelve">下架
                 </label>
             </div>
         </div>
@@ -70,3 +70,32 @@
     <!--/.sidebar-offcanvas-->
 
 </div>
+
+<script>
+
+    var categoryId = '${categoryId}';
+    if (categoryId) {
+        $("input:radio[name=candyCategoriesCheckBox][value=" + categoryId + "]").attr("checked", 'checked');
+    }
+    var state = '${state}';
+    if (state) {
+        $("input:radio[name=candyStates][value=" + state + "]").attr("checked", 'checked');
+    }
+
+    $("#search").on("click", function () {
+        var url = "<%=basePath%>candy/manageCandy?";
+        var candyCategoriesCheckBox = $('input:radio[name=candyCategoriesCheckBox]:checked').val();
+        var state = $('input:radio[name=candyStates]:checked').val();
+        if (candyCategoriesCheckBox) {
+            url += "candyCategoryId=" + candyCategoriesCheckBox;
+        } else {
+            url += "candyCategoryId=";
+        }
+        if (state) {
+            url += "&state=" + state;
+        }
+        window.location.href = url;
+
+    });
+
+</script>

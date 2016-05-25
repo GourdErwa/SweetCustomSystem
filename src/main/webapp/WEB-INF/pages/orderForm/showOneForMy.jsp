@@ -51,11 +51,12 @@
     </div>
     </p>
 
-    <hr>
+
     <div class="form-group" style="float: right">
         <c:if test="${sessionScope.get('users') != null}">
             <!--是否可以确定收货-->
             <c:if test="${orderForm.state=='AlreadyShipped'}">
+                <hr>
                 <button type="button" class="btn btn-warning"
                         onclick="window.location.href='<%=basePath%>orderForm/updateOrderFormsSateAlreadySign?orderFormId=${orderForm.orderFormId}'"
                 >确认收货

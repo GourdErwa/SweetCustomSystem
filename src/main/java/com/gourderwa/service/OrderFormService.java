@@ -2,6 +2,7 @@ package com.gourderwa.service;
 
 import com.gourderwa.dao.CandyDao;
 import com.gourderwa.dao.OrderFormDao;
+import com.gourderwa.dao.UsersDao;
 import com.gourderwa.entity.Candy;
 import com.gourderwa.entity.OrderForm;
 import com.gourderwa.entity.Users;
@@ -23,7 +24,8 @@ public class OrderFormService {
     private OrderFormDao orderFormDao;
     @Resource
     private CandyDao candyDao;
-
+    @Resource
+    private UsersDao usersDao;
 
     /**
      * 查询所有订单
@@ -47,7 +49,7 @@ public class OrderFormService {
         candy.setStock(stock < 1 ? 0 : stock);
         final Users users = (Users) request.getSession().getAttribute("users");
         OrderForm orderForm =
-                new OrderForm(users, candy, num, address, OrderForm.State.WaitingForDelivery, null, TimesUtils.DATE_FORMATTER.format(new Date()), guestBook);
+                new OrderForm(usersDao.searchUserById(users.getUserId()), candy, num, address, OrderForm.State.WaitingForDelivery, null, TimesUtils.DATE_FORMATTER.format(new Date()), guestBook);
         return orderFormDao.insertOrderForms(orderForm);
     }
 
@@ -61,5 +63,18 @@ public class OrderFormService {
         final OrderForm orderForm = orderFormDao.searchOrderFormById(orderFormId);
         orderForm.setState(OrderForm.State.AlreadySign);
         orderFormDao.updateOrderForms(orderForm);
+    }
+
+    public Result updateOrderForm(int orderFormId, OrderForm.State state, String reasonRejection) {
+        try {
+            OrderForm orderForm = orderFormDao.searchOrderFormById(orderFormId);
+            orderForm.setState(state);
+            orderForm.setReasonRejection(reasonRejection);
+            orderFormDao.updateOrderForms(orderForm);
+            return new Result(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false, e.getMessage(), null);
+        }
     }
 }

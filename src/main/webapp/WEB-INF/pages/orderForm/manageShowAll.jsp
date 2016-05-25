@@ -21,29 +21,33 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="exampleModalLabel">订单管理</h4>
             </div>
             <div class="modal-body">
                 <form>
+                    <input type="hidden" id="orderFormId" value="">
                     <div class="form-group">
                         <label class="control-label">请选择:</label>
                         <div class="controls">
-                            <select class="form-control">
-                                <option>发货</option>
-                                <option>驳回</option>
+                            <select class="form-control" id="state">
+                                <option value="WaitingForDelivery">等待发货</option>
+                                <option value="SellerRejected">卖家驳回</option>
+                                <option value="AlreadyShipped">发货</option>
+                                <option value="AlreadySign">已签收</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="message-text" class="control-label">商家留言:</label>
-                        <textarea class="form-control" id="message-text"></textarea>
+                        <label for="reasonRejection" class="control-label">商家留言:</label>
+                        <textarea class="form-control" id="reasonRejection"></textarea>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary">确认</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="update">确认修改</button>
             </div>
         </div>
     </div>
@@ -95,8 +99,8 @@
         "columns": [
             {"data": "orderFormId"},
             {"data": "users.userName"},
-            {"data": "candyName"},
-            {"data": "candyCategory.candyCategoryName"},
+            {"data": "candy.candyName"},
+            {"data": "candy.candyCategory.candyCategoryName"},
             {"data": "state"},
             {"data": "orderTime"},
             {"data": "orderFormId"}
@@ -138,24 +142,22 @@
                 "targets": 5
             }
             ,
-            {
+            {//showOneForMy?orderFormId=320
                 "render": function (data, type, row) {
                     return "<button type=\"button\" " +
-                    "data =\""+data+"\"  " +
-                    "class=\"btn btn-primary js-updateOrderForm\" " +
-                    "data-toggle=\"modal\"  " +
-                    "data-target=\"#manageOrderForm\" " +
-                    "data-whatever=\"@getbootstrap\">" +
-                    "修改订单" +
-                    "</button>";
-                    /*return row.state()==("WaitingForDelivery")?"<button type=\"button\" " +
-                            "data =\""+data+"\"  " +
-                            "class=\"btn btn-primary js-updateOrderForm\" " +
+                            "onclick = window.open(\"<%=basePath%>orderForm/showOneForMy?orderFormId=" + data + "\") " +
+                            "class=\"btn btn-primary btn-xs\" " +
+                            ">查看 " +
+                            "</button>&nbsp; " +
+                            "<button type=\"button\" " +
+                            "orderFormId =\"" + data + "\"  " +
+                            "onclick = updateOrderForm('" + data + "') " +
+                            "class=\"btn btn-danger  btn-xs\" " +
                             "data-toggle=\"modal\"  " +
                             "data-target=\"#manageOrderForm\" " +
-                            "data-whatever=\"@getbootstrap\">" +
+                            "data-whatever=\"@getbootstrap\"> " +
                             "修改订单" +
-                            "</button>":"<span style=\"display:none\">  ";*/
+                            " </button>";
                 },
                 "targets": 6
             }
@@ -166,9 +168,36 @@
     dataTableSetting.data = orderForms;
     table = $showTable.DataTable(dataTableSetting);
 
+    var $orderFormId = $("#orderFormId");
+    function updateOrderForm(orderFormId) {
+        $("#reasonRejection").empty();
+        $orderFormId.val(orderFormId);
+    }
 
-    $(".js-updateOrderForm").on('click',function () {
-        console.log("===");
+    $("#update").on("click", function () {
+        $("#manageOrderForm").hide();
+        var orderFormId = $orderFormId.val();
+        var state = $("#state").val();
+        var reasonRejection = $("#reasonRejection").val();
+
+        $.ajax({
+            type: "POST",
+            url: "<%=basePath%>" + "orderForm/updateOrderForm",
+            data: {
+                "orderFormId": orderFormId,
+                "state": state,
+                "reasonRejection": reasonRejection
+            },
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                if (data.success) {
+                    MSG.showSucceedMsg("修改成功");
+                } else {
+                    MSG.showErrorMsg("修改失败，error：" + data.msg);
+                }
+            }
+
+        });
     });
-
 </script>

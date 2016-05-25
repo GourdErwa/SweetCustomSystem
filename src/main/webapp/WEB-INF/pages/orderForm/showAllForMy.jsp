@@ -26,6 +26,7 @@
             <th>商品类别</th>
             <th>订单状态</th>
             <th>下单时间</th>
+            <th>操作</th>
         </tr>
         </thead>
     </table>
@@ -63,7 +64,8 @@
             {"data": "candy.candyName"},
             {"data": "candy.candyCategory.candyCategoryName"},
             {"data": "state"},
-            {"data": "orderTime"}
+            {"data": "orderTime"},
+            {"data": "orderFormId"}
         ],
         "columnDefs": [
             {
@@ -95,6 +97,16 @@
                     return data;
                 },
                 "targets": 4
+            },
+            {
+                "render": function (data, type, row) {
+                    return "<button type=\"button\" " +
+                            "onclick = window.open(\"<%=basePath%>orderForm/showOneForMy?orderFormId=" + data + "\") " +
+                            "class=\"btn btn-primary btn-xs\" " +
+                            ">查看 " +
+                            "</button>";
+                },
+                "targets": 5
             }
         ]
     };
