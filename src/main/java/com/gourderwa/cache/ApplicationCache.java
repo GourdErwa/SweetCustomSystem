@@ -17,7 +17,5 @@ public class ApplicationCache {
     public static String imagesUploadAddress = null;
     public static CandyCategory customization = null;
 
-    private static boolean isInit = false;
-
 
 }
